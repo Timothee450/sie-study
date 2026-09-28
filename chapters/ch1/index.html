@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Chapter 1 · Common Stock · SIE Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Cormorant+Garamond:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/theme.css">
+<script src="../../assets/theme.js"></script>
+<style>
+.hub{display:grid;gap:28px;padding-block:36px 0}
+.hub-head{display:grid;gap:10px}
+.hub-head h1{font-size:clamp(48px,9vw,88px);line-height:.95}
+.hub-head .lede{font-size:18px;color:var(--ink-2);max-width:60ch}
+.learn-list{list-style:none;margin:0;padding:0;display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.learn-list li{display:grid;grid-template-columns:auto 1fr;gap:10px;font-size:15px;color:var(--ink-2)}
+.learn-list .num{color:var(--accent);font-weight:600}
+.learn-list b{color:var(--ink);font-weight:600}
+.pick{display:grid;gap:12px}
+.pick h2{font-size:30px}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mode{display:grid;gap:10px;align-content:start;text-decoration:none;color:inherit;padding:26px;transition:transform .2s,border-color .2s}
+.mode:hover{transform:translateY(-2px);border-color:var(--accent)}
+.mode svg{width:40px;height:40px;color:var(--accent)}
+.mode h3{font-size:40px}
+.mode p{color:var(--ink-2);font-size:15.5px}
+.mode .meta{font:500 13px var(--font-mono);color:var(--ink-2)}
+.mode .cta{font-weight:600;color:var(--accent)}
+.mode.learn h3{font-family:var(--font-bold);font-stretch:125%;font-weight:800;font-size:36px;letter-spacing:-.01em}
+.quiz-tile{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 20px;align-items:center}
+.quiz-tile h3{font-size:30px}
+.quiz-tile p{color:var(--ink-2);font-size:15px}
+.quiz-tile .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+@media (max-width:640px){.modes{grid-template-columns:1fr}.quiz-tile{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="../../index.html">SIE <b>Study</b></a>
+  <a class="crumb" href="../../index.html">← All chapters</a>
+  <span class="spacer"></span>
+  <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch theme">☾</button>
+</div></header>
+
+<main class="wrap hub">
+  <div class="hub-head">
+    <span class="label">Chapter 1</span>
+    <h1>Common Stock</h1>
+    <p class="lede">What owning a share gives you: shareholder rights, dividends, splits, trading basics, risk, and reading a company's financials.</p>
+  </div>
+
+  <section aria-labelledby="learn-title" class="pick">
+    <h2 id="learn-title">What you'll learn</h2>
+    <ul class="learn-list">
+      <li><span class="num">1.1</span><span><b>Basic characteristics.</b> Equity, how shareholders profit, growth vs mature, cyclical vs defensive</span></li>
+      <li><span class="num">1.2</span><span><b>Rights of shareholders.</b> Dividends, voting, records, preemptive rights, splits, liquidation, transfer</span></li>
+      <li><span class="num">1.3</span><span><b>Trading.</b> Primary vs secondary markets, exchanges vs OTC, share counts, market cap, ADRs</span></li>
+      <li><span class="num">1.4</span><span><b>Suitability.</b> Why own stock, the two families of risk, diversification, market-cap tiers</span></li>
+      <li><span class="num">1.5</span><span><b>Fundamentals.</b> Balance sheet, income statement, stockholders' equity, P/E</span></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="mode-title" class="pick">
+    <h2 id="mode-title">How do you want to study?</h2>
+    <div class="modes">
+      <a class="mode card" href="textbook.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5.5C4.5 4 8 4 12 6c4-2 7.5-2 10-.5V19c-2.5-1.5-6-1.5-10 .5-4-2-7.5-2-10-.5z"/><path d="M12 6v13.5"/></svg>
+        <span class="label">Read</span>
+        <h3>Textbook</h3>
+        <p>The full chapter in detail, with worked examples, tables and calculators.</p>
+        <span class="meta">≈ 45 min read</span>
+        <span class="cta">Open the textbook →</span>
+      </a>
+      <a class="mode card learn" href="learn.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M10 8.5v7l6-3.5z"/></svg>
+        <span class="label">Play</span>
+        <h3>Learning</h3>
+        <p>An animated, click-through lesson with hands-on simulators. Easy to follow.</p>
+        <span class="meta">≈ 25 min · 40+ slides</span>
+        <span class="cta">Start the lesson →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="quiz-tile card" aria-labelledby="quiz-title">
+    <div>
+      <span class="label">Test yourself</span>
+      <h3 id="quiz-title">Chapter 1 quiz</h3>
+      <p>25 exam-style questions with explanations.</p>
+    </div>
+    <div class="row">
+      <span class="badge" id="quiz-badge">Not attempted yet</span>
+      <a class="btn primary" href="quiz.html">Take the quiz →</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot"><div class="wrap"><p>SIE Study is independent study material and is not affiliated with or endorsed by FINRA. Examples are fictional.</p></div></footer>
+
+<script src="../../assets/progress.js"></script>
+<script>
+Progress.showBadge(document.getElementById("quiz-badge"), "ch1");
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Chapter 1 quiz · SIE Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Cormorant+Garamond:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/theme.css">
+<script src="../../assets/theme.js"></script>
+<style>
+.quiz-page{display:grid;gap:14px;padding-block:32px 0;max-width:820px}
+.quiz-page h1{font-size:clamp(40px,7vw,60px)}
+.lede{color:var(--ink-2);max-width:62ch}
+.quiz{display:grid;gap:16px;scroll-margin-top:72px}
+.qbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.qprogress{flex:1 1 160px;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.qprogress span{display:block;height:100%;background:var(--accent);transition:width .25s}
+.qtext{font:500 19px/1.45 var(--font-body);max-width:66ch;outline:none}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:baseline;padding:12px 14px;font:400 15.5px/1.45 var(--font-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt .l{font-weight:600;color:var(--ink-2)}
+.opt.right{border-color:var(--accent);background:var(--accent-soft)}
+.opt.wrong{border-color:var(--red);background:var(--red-soft)}
+.opt:disabled{cursor:default}
+.explain{padding:14px 16px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.btn-row{display:flex;flex-wrap:wrap;gap:8px}
+.score-big{font:700 64px/1 var(--font-serif);color:var(--accent)}
+.meter{position:relative;height:12px;border-radius:6px;background:var(--surface-2)}
+.meter span{position:absolute;inset:0 auto 0 0;border-radius:6px}
+.meter span.pass{background:var(--accent)}
+.meter span.fail{background:var(--gold)}
+.meter .mark{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink)}
+.note{color:var(--ink-2);font-size:14px}
+.quiz h3{font-size:26px;margin-top:6px}
+.review-list{display:grid;gap:10px;padding-left:0;margin:0;list-style:none}
+.review-item{display:grid;gap:4px;padding:12px 14px;border:1px solid var(--red);border-radius:8px;background:var(--bg);font-size:14.5px}
+</style>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="../../index.html">SIE <b>Study</b></a>
+  <a class="crumb" href="index.html">← Chapter 1</a>
+  <span class="spacer"></span>
+  <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch theme">☾</button>
+</div></header>
+
+<main class="wrap quiz-page">
+  <p class="label">Chapter 1 · Common Stock</p>
+  <h1>Practice quiz</h1>
+  <p class="lede">25 exam-style questions. Pick an answer to see whether it's right and why.</p>
+  <section class="card quiz" id="quiz" aria-label="Quiz"><noscript>The quiz needs JavaScript turned on.</noscript></section>
+</main>
+
+<footer class="site-foot"><div class="wrap"><p>SIE Study is independent study material and is not affiliated with or endorsed by FINRA. Examples are fictional.</p></div></footer>
+
+<script src="../../assets/progress.js"></script>
+<script src="../../assets/quiz.js"></script>
+<script src="questions.js"></script>
+<script>QuizUI.mount(document.getElementById("quiz"), window.QUIZ);</script>
+</body>
+</html>

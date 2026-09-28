@@ -1,0 +1,1013 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Chapter 1 Learning · SIE Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Cormorant+Garamond:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/theme.css">
+<script src="../../assets/theme.js"></script>
+<style>
+/* Learning deck: shared tokens under the deck's own names */
+:root{
+  --amber:var(--gold); --amber-soft:var(--gold-soft); --accent-2:var(--accent);
+  --f-display:var(--font-bold); --f-body:var(--font-body); --f-mono:var(--font-mono);
+  --font-heading:var(--font-bold);
+}
+*{box-sizing:border-box}
+html{height:100%;box-sizing:border-box}
+body{height:100%;margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 var(--f-body);display:grid;grid-template-rows:auto 1fr auto;overflow:hidden;-webkit-font-smoothing:antialiased}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-weight:600}
+
+/* ---------- chrome ---------- */
+.top{display:flex;align-items:center;gap:16px;padding:10px clamp(16px,3vw,32px);border-bottom:1px solid var(--line);background:var(--bg);position:relative;z-index:5}
+.brand{border:0;background:none;display:flex;align-items:center;gap:8px;font:600 13px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);cursor:pointer;padding:8px 4px;white-space:nowrap}
+.brand .caret{color:var(--accent)}
+.track{position:relative;flex:1;height:6px;border-radius:3px;background:var(--surface-2);min-width:60px}
+.fill{position:absolute;inset:0 auto 0 0;width:0;border-radius:3px;background:var(--accent);transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.tick{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;border:2px solid var(--accent);background:var(--bg);cursor:pointer;padding:0}
+.tick.done{background:var(--accent)}
+.tick span{position:absolute;top:16px;left:50%;transform:translateX(-50%);font:600 10px/1 var(--f-mono);color:var(--ink-2);letter-spacing:.04em}
+.sec-label{font:600 12px/1 var(--f-mono);color:var(--ink-2);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.menu{position:absolute;top:100%;left:clamp(16px,3vw,32px);z-index:20;margin-top:6px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:8px;width:min(340px,calc(100vw - 32px));max-height:70vh;overflow:auto}
+.menu button{display:flex;gap:12px;width:100%;text-align:left;border:0;background:none;padding:10px 12px;border-radius:8px;cursor:pointer}
+.menu button:hover{background:var(--surface-2)}
+.menu .mono{color:var(--accent);min-width:34px}
+.bottom{display:flex;align-items:center;gap:12px;padding:10px clamp(16px,3vw,32px);border-top:1px solid var(--line);background:var(--bg)}
+.bottom .spacer{flex:1}
+.hint{font-size:12px;color:var(--ink-2)}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:9px 18px;font-weight:600;font-size:15px;cursor:pointer;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.4;cursor:default;transform:none}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.small{padding:6px 14px;font-size:14px}
+
+/* ---------- stage ---------- */
+.stage{position:relative;overflow:hidden}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;visibility:hidden;padding-inline:clamp(16px,4vw,56px)}
+.slide.active{visibility:visible}
+.slide-inner{margin:auto;width:100%;max-width:1120px;padding-block:28px 36px;display:flex;flex-direction:column;gap:22px}
+.eyebrow{margin:0;font:600 12px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+h1,h2,h3{font-family:var(--f-display);font-stretch:125%;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(46px,8vw,108px);line-height:.92;font-weight:850}
+h2{font-size:clamp(28px,4.2vw,52px);line-height:1.02;font-weight:800}
+h3{font-size:clamp(18px,1.7vw,22px);line-height:1.15;font-weight:750;font-stretch:112%}
+h2 em,h1 em{font-style:normal;color:var(--accent)}
+.lede{margin:0;font-size:clamp(17px,1.5vw,20px);color:var(--ink-2);max-width:60ch}
+p{margin:0}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,48px);align-items:center}
+.split.wide-left{grid-template-columns:1.25fr 1fr}
+.cols{display:grid;gap:16px;grid-template-columns:repeat(var(--n,3),minmax(0,1fr))}
+@media (max-width:860px){.split,.split.wide-left{grid-template-columns:1fr}.cols{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.cols{grid-template-columns:1fr}.hint{display:none}.sec-label{display:none}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:8px}
+.card .k{font:600 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.card p{color:var(--ink-2);font-size:15.5px}
+.big{font:800 clamp(28px,3.4vw,44px)/1 var(--f-display);font-stretch:112%;font-variant-numeric:tabular-nums}
+.pts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.pts li{position:relative;padding-left:20px;font-size:17px}
+.pts li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:2px;background:var(--accent)}
+.tip{align-self:flex-start;display:block;background:var(--amber-soft);color:var(--ink);border-radius:12px;padding:12px 16px;font-size:16px;max-width:80ch}
+.tip > b:first-child{display:inline-block;margin-right:10px;font:600 11px/1.6 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:14px;background:var(--surface)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.pos{color:var(--accent)} .neg{color:var(--red)}
+svg text{font-family:var(--f-body)}
+.f-accent{fill:var(--accent)} .f-accent-soft{fill:var(--accent-soft)} .f-surface{fill:var(--surface)} .f-surface2{fill:var(--surface-2)}
+.f-ink{fill:var(--ink)} .f-ink2{fill:var(--ink-2)} .f-amber{fill:var(--amber)} .f-amber-soft{fill:var(--amber-soft)} .f-red{fill:var(--red)} .f-red-soft{fill:var(--red-soft)} .f-blue{fill:var(--blue)} .f-bg{fill:var(--bg)} .f-none{fill:none}
+.s-line{stroke:var(--line)} .s-ink{stroke:var(--ink)} .s-ink2{stroke:var(--ink-2)} .s-accent{stroke:var(--accent)} .s-bg{stroke:var(--bg)} .s-red{stroke:var(--red)} .s-amber{stroke:var(--amber)}
+.viz{width:100%;height:auto;max-width:100%;display:block}
+.scroll-x{overflow-x:auto;max-width:100%}
+
+/* ---------- sim chrome ---------- */
+.sim{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:clamp(16px,2.2vw,26px);display:flex;flex-direction:column;gap:16px;box-shadow:var(--shadow)}
+.sim-tag{align-self:flex-start;font:600 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--on-accent);background:var(--accent);padding:5px 9px;border-radius:6px}
+.ctl{display:flex;flex-direction:column;gap:6px}
+.ctl label{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--ink-2)}
+.ctl label output{font:600 14px var(--f-mono);color:var(--ink)}
+input[type=range]{width:100%;accent-color:var(--accent);height:28px;cursor:pointer}
+input[type=number]{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:8px 10px;font-family:var(--f-mono)}
+.seg{display:inline-flex;background:var(--surface-2);border-radius:999px;padding:4px;gap:4px;flex-wrap:wrap}
+.seg button{border:0;background:none;border-radius:999px;padding:7px 14px;font-weight:600;font-size:14px;cursor:pointer;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.readout{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.readout div{background:var(--bg);border-radius:12px;padding:10px 12px}
+.readout .k{font:600 10.5px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.readout .v{font:700 20px/1.3 var(--f-mono);font-variant-numeric:tabular-nums}
+.formula{font:500 15px/1.5 var(--f-mono);background:var(--bg);border-radius:10px;padding:10px 14px;color:var(--ink)}
+.formula b{color:var(--accent)}
+.switch{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-weight:600;font-size:15px}
+.switch input{appearance:none;width:44px;height:26px;border-radius:13px;background:var(--surface-2);border:1px solid var(--line);position:relative;cursor:pointer;transition:background .2s;margin:0}
+.switch input::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .25s}
+.switch input:checked{background:var(--accent)}
+.switch input:checked::after{transform:translateX(18px)}
+
+/* ---------- title / dividers ---------- */
+.cert{position:relative;border-radius:14px;padding:12px;background:repeating-linear-gradient(45deg,var(--accent) 0 1px,transparent 1px 6px),var(--surface);box-shadow:var(--shadow)}
+.cert-in{background:var(--surface);border:1.5px solid var(--accent);border-radius:8px;padding:clamp(18px,3vw,30px);display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;position:relative;overflow:hidden}
+.cert-in .k{font:600 11px/1 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.cert-in .name{font:800 clamp(22px,2.6vw,32px)/1 var(--f-display);font-stretch:125%}
+.cert-row{display:flex;justify-content:space-between;width:100%;font:500 12px var(--f-mono);color:var(--ink-2)}
+.rosette{width:150px;height:150px}
+.rosette ellipse{fill:none;stroke:var(--accent);stroke-width:.7;opacity:.55}
+.divider{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,5vw,64px);align-items:center}
+.divider .n{font:900 clamp(96px,18vw,230px)/.8 var(--f-display);font-stretch:125%;color:var(--accent);letter-spacing:-.04em}
+@media (max-width:700px){.divider{grid-template-columns:1fr}}
+
+/* ---------- specific pieces ---------- */
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.node{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:600;font-size:15px;text-align:center}
+.node.acc{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.node.soft{background:var(--accent-soft);border-color:transparent}
+.arrow{font:600 18px var(--f-mono);color:var(--accent)}
+.dots{display:flex;flex-wrap:wrap;gap:4px;min-height:40px;align-content:flex-start}
+.dot{width:10px;height:10px;border-radius:3px;background:var(--accent)}
+.dot.old{background:var(--ink-2);opacity:.45}
+.bar-h{height:14px;border-radius:7px;background:var(--surface-2);overflow:hidden;position:relative}
+.bar-h > i{position:absolute;inset:0 auto 0 0;width:0;background:var(--accent);border-radius:7px}
+.rights-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:860px){.rights-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.right-tile{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.right-tile .mono{font-size:12px;color:var(--accent);font-weight:600}
+.right-tile svg{width:34px;height:34px;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.right-tile b{font-size:16px;line-height:1.25}
+.doc{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 20px 20px;position:relative;display:flex;flex-direction:column;gap:10px;min-height:230px;box-shadow:var(--shadow)}
+.doc .form{font:900 44px/1 var(--f-display);font-stretch:125%}
+.doc .ln{height:6px;border-radius:3px;background:var(--surface-2)}
+.stamp{position:absolute;right:14px;bottom:18px;transform:rotate(-12deg);border:3px solid currentColor;border-radius:8px;padding:6px 10px;font:800 16px/1 var(--f-display);font-stretch:125%;letter-spacing:.08em}
+.tbl{width:100%;border-collapse:collapse;font-size:16px}
+.tbl th,.tbl td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
+.tbl th{font:600 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.tbl td:first-child{font-weight:600}
+.ledger{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;font-family:var(--f-mono);font-size:15px}
+.ledger .hd{display:flex;justify-content:space-between;padding:10px 16px;background:var(--surface-2);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.lrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-top:1px solid var(--line);position:relative}
+.lrow .strike{position:absolute;left:12px;right:12px;top:50%;height:2px;background:var(--red)}
+.lrow .issued{font:600 11px/1 var(--f-mono);background:var(--accent);color:var(--on-accent);padding:4px 8px;border-radius:6px;letter-spacing:.06em}
+.steps3{display:flex;flex-direction:column;gap:12px}
+.steps3 > div{display:flex;gap:14px;align-items:flex-start}
+.steps3 .n{flex:none;width:32px;height:32px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font:700 14px var(--f-mono)}
+.steps3 p{color:var(--ink-2);font-size:15px}
+.econ-cards{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+@media (max-width:700px){.econ-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.ecard{background:var(--bg);border-radius:12px;padding:10px 6px 8px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;text-align:center}
+.ecard .plot{position:relative;width:100%;height:110px}
+.ecard .plot::after{content:"";position:absolute;left:10%;right:10%;top:50%;height:1px;background:var(--line)}
+.ecard .b{position:absolute;left:30%;width:40%;bottom:50%;height:50%;transform-origin:50% 100%;border-radius:4px 4px 0 0;background:var(--accent);transform:scaleY(0)}
+.ecard .b.down{background:var(--red)}
+.ecard .pct{font:600 13px var(--f-mono)}
+.ecard .grp{font:600 9.5px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.bucket{border:2px dashed var(--line);border-radius:16px;padding:12px;min-height:150px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,background .2s;cursor:pointer}
+.bucket.hot{border-color:var(--accent);background:var(--accent-soft)}
+.bucket h3{font-size:17px}
+.bucket .sub{font-size:13px;color:var(--ink-2)}
+.bucket-list,.tray{display:flex;flex-wrap:wrap;gap:8px}
+.tray{min-height:48px;justify-content:center}
+.risk-card{background:var(--surface);border:1.5px solid var(--ink);border-radius:10px;padding:8px 12px;font-weight:600;font-size:14.5px;cursor:grab;user-select:none;touch-action:none;position:relative}
+.risk-card.sel{outline:3px solid var(--amber);outline-offset:2px}
+.risk-card.placed{border-color:var(--accent);background:var(--accent-soft);cursor:default}
+.feedback{min-height:48px;font-size:15px;color:var(--ink-2);background:var(--bg);border-radius:10px;padding:12px 14px}
+.lq-row{display:grid;grid-template-columns:minmax(120px,190px) 1fr 86px;gap:12px;align-items:center;font-size:14.5px}
+.lq-row .bar-h{height:20px;border-radius:6px}
+.lq-row .bar-h > i{border-radius:6px}
+.lq-row.common .bar-h > i{background:var(--amber)}
+.lq-row .amt{font:600 13px var(--f-mono);text-align:right}
+.lq-row .pri{font:600 11px var(--f-mono);color:var(--ink-2);margin-right:6px}
+@media (max-width:520px){.lq-row{grid-template-columns:1fr 70px}.lq-row .bar-h{grid-column:1 / -1;grid-row:2}}
+.ladder{display:flex;flex-direction:column;gap:6px}
+.rung{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center;padding:12px 14px;border-radius:12px;background:var(--bg);transition:background .3s,color .3s,transform .3s}
+.rung b{font-family:var(--f-display);font-stretch:112%;font-size:17px}
+.rung span{font:500 14px var(--f-mono);color:var(--ink-2)}
+.rung.on{background:var(--accent);color:var(--on-accent);transform:translateX(8px)}
+.rung.on span{color:var(--on-accent)}
+.fn-bars{display:flex;flex-direction:column;gap:10px}
+.fn-bar{position:relative;height:44px;border-radius:10px;background:var(--surface-2);overflow:hidden}
+.fn-bar > i{position:absolute;top:0;bottom:0;left:0;border-radius:10px}
+.fn-bar > span{position:absolute;left:12px;top:50%;transform:translateY(-50%);font:600 13px var(--f-mono);z-index:1;white-space:nowrap}
+.remember{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.remember .card{padding:14px 16px;gap:6px}
+.remember .card b{font-size:15.5px;line-height:1.35}
+.remember .card .k{color:var(--accent)}
+.eq-stack{display:flex;flex-direction:column-reverse;gap:6px;width:100%;max-width:360px}
+.eq-block{border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;gap:10px;font-weight:600}
+.cat-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+@media (max-width:860px){.cat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cat{border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;background:var(--surface);border:1px solid var(--line)}
+.cat .k{font:600 10.5px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.cat.a .k{color:var(--accent)} .cat.l .k{color:var(--red)}
+.cat ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--ink-2);display:flex;flex-direction:column;gap:4px}
+@media (prefers-reduced-motion: reduce){.fill,.rung,.btn{transition:none}}
+/* undo shared-theme component styles that collide with the deck's own */
+.slide .card{box-shadow:none}
+.tip{border-left:0}
+.top .crumb{flex:none}
+@media (max-width:520px){.top .crumb{font-size:0}.top .crumb::before{content:"←";font-size:18px}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="crumb" href="index.html">← Chapter 1</a>
+  <button class="brand" id="menu-btn" aria-expanded="false" aria-controls="menu">Contents <span class="caret">▾</span></button>
+  <div class="track" id="track"><div class="fill" id="fill"></div></div>
+  <span class="sec-label" id="sec-label">Intro</span>
+  <nav class="menu" id="menu" hidden aria-label="Jump to section"></nav>
+  <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch theme">☾</button>
+</header>
+
+<main class="stage" id="stage">
+
+<!-- 0 · TITLE -->
+<section class="slide" data-section="intro" data-title="Welcome" data-key="title">
+ <div class="slide-inner">
+  <div class="split">
+   <div style="display:flex;flex-direction:column;gap:22px">
+    <p class="eyebrow">SIE Exam · Chapter 1</p>
+    <h1>Common<br><em>Stock</em></h1>
+    <p class="lede">Five sections, seven shareholder rights, and the numbers you need on exam day. Every concept has something to play with.</p>
+    <div class="chips"><span class="chip">1.1 Basics</span><span class="chip">1.2 Rights</span><span class="chip">1.3 Trading</span><span class="chip">1.4 Suitability</span><span class="chip">1.5 Fundamentals</span></div>
+    <div><button class="btn primary" id="start-btn">Start the walkthrough →</button></div>
+   </div>
+   <div class="cert">
+    <div class="cert-in">
+     <span class="k">Certificate of ownership</span>
+     <svg class="rosette" viewBox="-80 -80 160 160" aria-hidden="true" id="rosette"></svg>
+     <p>This certifies that</p>
+     <span class="name">YOU</span>
+     <p>own <b class="num">100</b> shares of the common stock of Acme Widget Corp.</p>
+     <div class="cert-row"><span>No. 000001</span><span>Par value $1.00</span></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 1 · SLICE -->
+<section class="slide" data-section="intro" data-title="A share is a slice" data-key="slice">
+ <div class="slide-inner">
+  <h2>A share is a <em>slice</em> of the company</h2>
+  <div class="split">
+   <svg class="viz" id="slice-svg" viewBox="0 0 320 320" style="max-width:360px;justify-self:center" aria-label="A company pie divided into ten shares"></svg>
+   <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="card"><span class="k">The company</span><b>One whole business, called the issuer</b></div>
+    <div class="card" data-step="1"><span class="k">Split into shares</span><b>Ownership is divided into equal units</b></div>
+    <div class="card" data-step="2" style="border-color:var(--accent)"><span class="k">Your share</span><b>Buy one and you're a part-owner</b></div>
+    <p class="tip" data-step="3"><b>Exam tip</b>Common stock is an <u>equity</u> security. You're an owner, not a lender.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 2 · DIV 1.1 -->
+<section class="slide" data-section="1.1" data-title="Section intro" data-key="div">
+ <div class="slide-inner">
+  <div class="divider"><div class="n">1.1</div><div style="display:flex;flex-direction:column;gap:16px"><h2>Basic characteristics</h2><div class="chips"><span class="chip">Supply &amp; demand</span><span class="chip">Two ways to profit</span><span class="chip">Growth vs mature</span><span class="chip">Cyclical vs defensive</span></div></div></div>
+ </div>
+</section>
+
+<!-- 3 · SUPPLY/DEMAND -->
+<section class="slide" data-section="1.1" data-title="Supply & demand" data-sim="demand">
+ <div class="slide-inner">
+  <h2>Price moves on <em>supply &amp; demand</em></h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <span class="sim-tag">Try it</span>
+    <svg class="viz" viewBox="0 0 400 200" aria-label="Seesaw of buyers and sellers">
+     <polygon points="200,120 180,175 220,175" class="f-ink2"/>
+     <g id="sd-beam">
+      <rect x="40" y="112" width="320" height="8" rx="4" class="f-ink"/>
+      <rect x="40" y="96" width="70" height="16" rx="4" class="f-accent-soft"/>
+      <rect x="290" y="96" width="70" height="16" rx="4" class="f-red-soft"/>
+      <text x="75" y="88" text-anchor="middle" font-size="13" font-weight="700" class="f-accent" id="sd-bn">Buyers 0</text>
+      <text x="325" y="88" text-anchor="middle" font-size="13" font-weight="700" class="f-red" id="sd-sn">Sellers 0</text>
+     </g>
+    </svg>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+     <div><span class="k mono" style="font-size:11px;color:var(--ink-2);letter-spacing:.1em">SHARE PRICE</span><div class="big" id="sd-price">$50.00</div></div>
+     <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn small" id="sd-buy">+ Buyer</button>
+      <button class="btn small" id="sd-sell">+ Seller</button>
+      <button class="btn small" id="sd-reset">Reset</button>
+     </div>
+    </div>
+   </div>
+   <ul class="pts">
+    <li data-step="1">More buyers than sellers → price rises</li>
+    <li data-step="1">More sellers than buyers → price falls</li>
+    <li data-step="2">What drives it: company results and investor mood</li>
+   </ul>
+  </div>
+ </div>
+</section>
+
+<!-- 4 · TWO WAYS -->
+<section class="slide" data-section="1.1" data-title="Two ways to profit">
+ <div class="slide-inner">
+  <h2>Two ways to <em>make money</em></h2>
+  <div class="split">
+   <div class="card" data-step="1" style="padding:22px">
+    <span class="k">① Capital appreciation</span>
+    <svg class="viz" viewBox="0 0 300 140" aria-hidden="true">
+     <polyline points="10,120 60,104 100,110 150,80 190,86 240,48 290,30" class="f-none s-accent" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+     <circle cx="10" cy="120" r="6" class="f-ink"/><text x="20" y="136" font-size="13" class="f-ink2">Buy $20</text>
+     <circle cx="290" cy="30" r="6" class="f-accent"/><text x="282" y="18" font-size="13" text-anchor="end" class="f-accent" font-weight="700">Sell $35</text>
+    </svg>
+    <b>Sell for more than you paid → <span class="pos num">+$15</span> a share</b>
+   </div>
+   <div class="card" data-step="2" style="padding:22px">
+    <span class="k">② Cash dividends</span>
+    <svg class="viz" viewBox="0 0 300 140" aria-hidden="true">
+     <rect x="20" y="30" width="110" height="90" rx="8" class="f-surface2"/><text x="75" y="80" text-anchor="middle" font-size="14" font-weight="700" class="f-ink">Profits</text>
+     <path d="M140 75 H190" class="s-accent" stroke-width="3" marker-end="url(#ah)"/>
+     <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="f-accent"/></marker></defs>
+     <g class="coins"><circle cx="230" cy="100" r="16" class="f-amber"/><circle cx="256" cy="84" r="16" class="f-amber"/><circle cx="222" cy="70" r="16" class="f-amber"/></g>
+     <text x="240" y="132" text-anchor="middle" font-size="13" class="f-ink2">to you</text>
+    </svg>
+    <b>The company shares its profits in cash</b>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 5 · GROWTH VS MATURE -->
+<section class="slide" data-section="1.1" data-title="Growth vs mature">
+ <div class="slide-inner">
+  <h2>Where do the <em>profits</em> go?</h2>
+  <div class="split">
+   <div class="card" data-step="1" style="gap:14px;padding:22px">
+    <span class="k">Growth company · e.g. Amazon</span>
+    <div class="flow"><span class="node soft">Profits</span><span class="arrow">↻</span><span class="node">Back into the business</span></div>
+    <p>New products, expansion, R&amp;D. Little or no dividend. You're betting on the price rising.</p>
+   </div>
+   <div class="card" data-step="2" style="gap:14px;padding:22px">
+    <span class="k">Mature company · e.g. Ford</span>
+    <div class="flow"><span class="node soft">Excess profits</span><span class="arrow">→</span><span class="node acc">Paid to shareholders</span></div>
+    <p>Fewer big growth projects, so extra cash goes out as dividends.</p>
+   </div>
+  </div>
+  <p class="tip" data-step="3"><b>Exam tip</b>Most common stocks pay no dividend at all. Growth = reinvest; mature = pay out.</p>
+ </div>
+</section>
+
+<!-- 6 · ECON -->
+<section class="slide" data-section="1.1" data-title="Cyclical vs defensive" data-sim="econ">
+ <div class="slide-inner">
+  <h2><em>Cyclical</em> swings. <em>Defensive</em> holds.</h2>
+  <div class="sim">
+   <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+    <span class="sim-tag">Flip the economy</span>
+    <div class="seg" role="group" aria-label="Economy"><button id="ec-up" aria-pressed="true">Expansion</button><button id="ec-down" aria-pressed="false">Recession</button></div>
+   </div>
+   <svg class="viz" viewBox="0 -14 600 98" aria-hidden="true">
+    <path d="M0 35 C 75 -5, 75 -5, 150 35 S 225 75, 300 35 S 375 -5, 450 35 S 525 75, 600 35" class="f-none s-line" stroke-width="3"/>
+    <circle id="ec-marker" cx="75" cy="5" r="9" class="f-accent"/>
+   </svg>
+   <div class="econ-cards" id="ec-cards"></div>
+  </div>
+  <p class="tip" data-step="1"><b>Exam tip</b>Cyclical = things people can skip (cars, restaurants, hotels). Defensive = things people always need (utilities, healthcare, food).</p>
+ </div>
+</section>
+
+<!-- 7 · DIV 1.2 -->
+<section class="slide" data-section="1.2" data-title="Section intro" data-key="div">
+ <div class="slide-inner">
+  <div class="divider"><div class="n">1.2</div><div style="display:flex;flex-direction:column;gap:16px"><h2>Rights of common stockholders</h2><div class="chips"><span class="chip">Dividends</span><span class="chip">Voting</span><span class="chip">Books &amp; records</span><span class="chip">Preemptive rights</span><span class="chip">Splits</span><span class="chip">Dissolution</span><span class="chip">Transfer</span></div></div></div>
+ </div>
+</section>
+
+<!-- 8 · SEVEN RIGHTS -->
+<section class="slide" data-section="1.2" data-title="The seven rights">
+ <div class="slide-inner">
+  <h2>Owning a share gives you <em>7 rights</em></h2>
+  <div class="rights-grid" id="rights-grid">
+   <div class="right-tile" data-step="1"><span class="mono">1.2.1</span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10.2c0-1 1-1.7 2.5-1.7s2.5.7 2.5 1.7-1 1.5-2.5 1.8-2.5.8-2.5 1.8 1 1.7 2.5 1.7 2.5-.7 2.5-1.7"/></svg><b>Receive dividends (pro-rata)</b></div>
+   <div class="right-tile" data-step="1"><span class="mono">1.2.2</span><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="9" rx="1"/><path d="M8 11V5h8v6M10 8l1.5 1.5L14 7"/></svg><b>Vote for the board</b></div>
+   <div class="right-tile" data-step="1"><span class="mono">1.2.3</span><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M15 15l5 5"/></svg><b>Inspect books &amp; records</b></div>
+   <div class="right-tile" data-step="1"><span class="mono">1.2.4</span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v8l6 4"/></svg><b>Keep your ownership % (preemptive)</b></div>
+   <div class="right-tile" data-step="1"><span class="mono">1.2.5</span><svg viewBox="0 0 24 24"><path d="M12 4v6M12 10l-6 8M12 10l6 8"/><circle cx="6" cy="19" r="1.5"/><circle cx="18" cy="19" r="1.5"/></svg><b>Vote on stock splits</b></div>
+   <div class="right-tile" data-step="1"><span class="mono">1.2.6</span><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V10l6-5 6 5v10M10 20v-5h4v5"/></svg><b>Claim on assets if dissolved</b></div>
+   <div class="right-tile" data-step="1"><span class="mono">1.2.7</span><svg viewBox="0 0 24 24"><path d="M4 8h14l-3-3M20 16H6l3 3"/></svg><b>Transfer (sell) your shares</b></div>
+  </div>
+ </div>
+</section>
+
+<!-- 9 · PRO-RATA -->
+<section class="slide" data-section="1.2" data-title="Dividends are pro-rata" data-sim="prorata">
+ <div class="slide-inner">
+  <h2>Dividends are <em>pro-rata</em></h2>
+  <div class="split">
+   <div class="sim">
+    <span class="sim-tag">Try it</span>
+    <p style="font-size:15px;color:var(--ink-2)">Board declares <b style="color:var(--ink)">$1.00 a share</b> on 1,000,000 shares. That's a <b style="color:var(--ink)">$1,000,000</b> payout.</p>
+    <div class="ctl"><label for="pr-own">Shares you own <output id="pr-own-o">100,000</output></label><input type="range" id="pr-own" min="10000" max="500000" step="10000" value="100000"></div>
+    <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+     <svg class="viz" id="pr-pie" viewBox="0 0 240 240" style="width:150px"></svg>
+     <div class="readout" style="flex:1"><div><div class="k">You own</div><div class="v" id="pr-pct">10%</div></div><div><div class="k">You get</div><div class="v pos" id="pr-get">$100,000</div></div></div>
+    </div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:16px">
+    <ul class="pts"><li>Own 10% of the shares → get 10% of the dividend</li><li data-step="1">Only the <b>board of directors</b> decides to pay one</li><li data-step="1">Shareholders do <b>not</b> vote on dividends</li></ul>
+    <p class="tip" data-step="2"><b>Exam tip</b>"Pro-rata" = in proportion to the shares you own.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 10 · THREE KINDS -->
+<section class="slide" data-section="1.2" data-title="Kinds of dividends">
+ <div class="slide-inner">
+  <h2>Three kinds of <em>dividends</em></h2>
+  <div class="cols" style="--n:3">
+   <div class="card" data-step="1"><span class="k">Cash</span><div class="big">$0.50<span style="font-size:.5em;color:var(--ink-2)"> / share</span></div><p>The most common kind. Usually paid quarterly.</p></div>
+   <div class="card" data-step="2"><span class="k">Stock</span><div class="big">+10%<span style="font-size:.5em;color:var(--ink-2)"> shares</span></div><p>You get more shares. The price adjusts down so the total value stays the same.</p></div>
+   <div class="card" data-step="3"><span class="k">Product</span><div class="big">Goods<span style="font-size:.5em;color:var(--ink-2)"> · rare</span></div><p>The company's own goods. Rare because of tax complications.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- NEW · DIVIDEND DATES -->
+<section class="slide" data-section="1.2" data-title="The dividend dates">
+ <div class="slide-inner">
+  <h2>Four dates, in <em>DERP</em> order</h2>
+  <div class="flow">
+   <span class="node" data-step="1">Declaration</span><span class="arrow" data-step="2">→</span>
+   <span class="node acc" data-step="2">Ex-date</span><span class="arrow" data-step="3">→</span>
+   <span class="node" data-step="3">Record</span><span class="arrow" data-step="4">→</span>
+   <span class="node" data-step="4">Payable</span>
+  </div>
+  <ul class="pts">
+   <li data-step="1">Board sets Declaration, Record and Payable</li>
+   <li data-step="2">The exchange sets the ex-date</li>
+   <li data-step="3">T+1 settlement → ex-date = record date</li>
+   <li data-step="4">Buy on the ex-date → no dividend (the seller gets it)</li>
+  </ul>
+  <p class="tip" data-step="4"><b>Exam tip</b>The price drops by about the dividend on the ex-date.</p>
+ </div>
+</section>
+
+<!-- 11 · STOCK DIVIDEND SIM -->
+<section class="slide" data-section="1.2" data-title="Stock dividend math" data-sim="stockdiv">
+ <div class="slide-inner">
+  <h2>Stock dividend: more shares, <em>same value</em></h2>
+  <div class="sim">
+   <span class="sim-tag">Try it</span>
+   <div class="cols" style="--n:3">
+    <div class="ctl"><label for="sdv-shares">Shares you own</label><input type="number" id="sdv-shares" value="100" min="1" max="100000"></div>
+    <div class="ctl"><label for="sdv-price">Price per share ($)</label><input type="number" id="sdv-price" value="55" min="0.01" step="0.01"></div>
+    <div class="ctl"><label for="sdv-pct">Stock dividend <output id="sdv-pct-o">10%</output></label><input type="range" id="sdv-pct" min="0" max="50" step="5" value="10"></div>
+   </div>
+   <div class="dots" id="sdv-dots" aria-hidden="true"></div>
+   <div class="readout">
+    <div><div class="k">Shares after</div><div class="v" id="sdv-ns">110</div></div>
+    <div><div class="k">Price after</div><div class="v" id="sdv-np">$50</div></div>
+    <div><div class="k">Value before</div><div class="v" id="sdv-vb">$5,500</div></div>
+    <div><div class="k">Value after</div><div class="v pos" id="sdv-va">$5,500</div></div>
+   </div>
+   <div class="formula" id="sdv-f">Factor = 1 + 10% = <b>1.10</b> · shares × 1.10 · price ÷ 1.10</div>
+  </div>
+ </div>
+</section>
+
+<!-- 12 · BOARD -->
+<section class="slide" data-section="1.2" data-title="The board of directors">
+ <div class="slide-inner">
+  <h2>You elect the <em>board</em>. The board runs the company.</h2>
+  <div class="split">
+   <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+    <span class="node" style="width:min(100%,280px)">Shareholders</span>
+    <span class="arrow" data-step="1">↓ elect</span>
+    <span class="node acc" data-step="1" style="width:min(100%,280px)">Board of directors</span>
+    <span class="arrow" data-step="2">↓ hire &amp; fire</span>
+    <span class="node soft" data-step="2" style="width:min(100%,280px)">CEO, CFO, senior execs</span>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <ul class="pts" data-step="3"><li>Sets the company's direction</li><li>Sets executive pay and major policies</li><li>Declares dividends</li></ul>
+    <div class="card" data-step="4"><span class="k">Can't make the annual meeting?</span><b>Vote by <span class="pos">proxy</span> (mail or online)</b></div>
+    <p class="tip" data-step="4"><b>Exam tip</b>Like voters electing politicians: you pick the board, not the day-to-day decisions.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 13 · VOTING SIM -->
+<section class="slide" data-section="1.2" data-title="Statutory vs cumulative" data-sim="voting">
+ <div class="slide-inner">
+  <h2><em>Statutory</em> vs <em>cumulative</em> voting</h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+     <span class="sim-tag">Win a seat</span>
+     <div class="seg" role="group" aria-label="Voting method"><button id="v-stat" aria-pressed="true">Statutory</button><button id="v-cum" aria-pressed="false">Cumulative</button></div>
+    </div>
+    <p style="font-size:15px;color:var(--ink-2)">3 board seats open. A big holder (200 shares) backs A, B, C with 200 votes each. You own <b style="color:var(--ink)">100 shares</b> and back Y.</p>
+    <div class="ctl"><label for="v-you">Your votes for Y <output id="v-you-o">100</output></label><input type="range" id="v-you" min="0" max="100" step="10" value="100"></div>
+    <div id="v-bars" style="display:flex;flex-direction:column;gap:8px"></div>
+    <div class="formula" id="v-result"></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <div class="card"><span class="k">Rule for both</span><b>1 share = 1 vote per seat</b><p>100 shares × 3 seats = 300 votes</p></div>
+    <div class="card"><span class="k">Statutory</span><b>Max 100 votes on any one seat</b></div>
+    <div class="card"><span class="k">Cumulative</span><b>Stack all 300 on one candidate</b></div>
+    <p class="tip" data-step="1"><b>Exam tip</b>Cumulative voting helps <u>smaller</u> shareholders. Statutory favors the big holders.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 14 · 10-K / 10-Q -->
+<section class="slide" data-section="1.2" data-title="Books & records">
+ <div class="slide-inner">
+  <h2>The right to <em>inspect</em> books &amp; records</h2>
+  <p class="lede">Public companies must file financial reports with the SEC, so owners can see how things are going.</p>
+  <div class="cols" style="--n:2">
+   <div class="doc" data-step="1"><span class="form">10-K</span><span class="k mono" style="font-size:12px;color:var(--ink-2)">ANNUAL REPORT · ONCE A YEAR</span><span class="ln" style="width:90%"></span><span class="ln" style="width:75%"></span><span class="ln" style="width:82%"></span><span class="stamp pos">AUDITED</span></div>
+   <div class="doc" data-step="2"><span class="form">10-Q</span><span class="k mono" style="font-size:12px;color:var(--ink-2)">QUARTERLY REPORT</span><span class="ln" style="width:85%"></span><span class="ln" style="width:70%"></span><span class="ln" style="width:60%"></span><span class="stamp" style="color:var(--amber)">UNAUDITED</span></div>
+  </div>
+  <p class="tip" data-step="3"><b>Exam tip</b><span><b>K</b> = annual + audited. <b>Q</b> = quarterly + unaudited. (The 4th quarter is covered by the 10-K.)</span></p>
+ </div>
+</section>
+
+<!-- 15 · DILUTION SIM -->
+<section class="slide" data-section="1.2" data-title="Preemptive rights" data-sim="dilution">
+ <div class="slide-inner">
+  <h2>Preemptive rights stop <em>dilution</em></h2>
+  <div class="split">
+   <div class="sim">
+    <span class="sim-tag">Try it</span>
+    <p style="font-size:15px;color:var(--ink-2)">You own <b style="color:var(--ink)">50,000 of 500,000</b> shares (10%). The company sells new shares.</p>
+    <div class="ctl"><label for="dl-new">New shares issued <output id="dl-new-o">500,000</output></label><input type="range" id="dl-new" min="0" max="1000000" step="50000" value="500000"></div>
+    <label class="switch"><input type="checkbox" id="dl-ex"> Use my preemptive rights</label>
+    <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+     <svg class="viz" id="dl-pie" viewBox="0 0 240 240" style="width:160px"></svg>
+     <div class="readout" style="flex:1"><div><div class="k">Your shares</div><div class="v" id="dl-mine">50,000</div></div><div><div class="k">Your stake</div><div class="v" id="dl-pct">5%</div></div></div>
+    </div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <ul class="pts"><li>New shares shrink your % (<b>dilution</b>)</li><li data-step="1">Preemptive right: <b>buy new shares first</b>, before the public</li><li data-step="1">Buy your share of the new issue → keep your %</li></ul>
+    <p class="tip" data-step="2"><b>Exam tip</b>Without offering rights, dilutive moves (new shares, convertibles, warrants, employee options) need shareholder approval.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 16 · RIGHTS VALUE -->
+<section class="slide" data-section="1.2" data-title="What a right is worth">
+ <div class="slide-inner">
+  <h2>A right is born <em>in the money</em></h2>
+  <div class="split">
+   <svg class="viz" viewBox="0 0 440 210" aria-label="Market price $50, subscription price $40, $10 of value">
+    <line x1="30" y1="150" x2="410" y2="150" class="s-line" stroke-width="3"/>
+    <g data-step="1"><rect x="30" y="100" width="304" height="36" rx="6" class="f-surface2"/><text x="40" y="123" font-size="14" font-weight="700" class="f-ink">Subscription price $40</text></g>
+    <g data-step="2"><rect x="30" y="54" width="380" height="36" rx="6" class="f-accent-soft"/><text x="40" y="77" font-size="14" font-weight="700" class="f-ink">Market price $50</text></g>
+    <g data-step="3"><rect x="334" y="100" width="76" height="36" rx="6" class="f-amber"/><text x="372" y="123" text-anchor="middle" font-size="15" font-weight="800" class="f-bg">$10</text><text x="372" y="180" text-anchor="middle" font-size="13" font-weight="600" class="f-amber">$10 below market</text></g>
+   </svg>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <ul class="pts" data-step="3"><li>1 right for each share you own</li><li>Short life: about <b>30–45 days</b></li><li>Your choice: <b>exercise</b>, <b>sell</b> it, or let it <b>expire</b></li></ul>
+    <p class="tip" data-step="4"><b>Exam tip</b>Rights are priced <u>below</u> market, so they have value the day they're issued.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 17 · RIGHTS VS WARRANTS -->
+<section class="slide" data-section="1.2" data-title="Rights vs warrants">
+ <div class="slide-inner">
+  <h2>Rights vs <em>warrants</em></h2>
+  <div class="scroll-x card" style="padding:4px 8px">
+   <table class="tbl">
+    <thead><tr><th></th><th>Rights</th><th>Warrants</th></tr></thead>
+    <tbody>
+     <tr data-step="1"><td>Lifespan</td><td class="num">30–45 days</td><td class="num">5+ years</td></tr>
+     <tr data-step="2"><td>Exercise price</td><td>Below market</td><td>Above market</td></tr>
+     <tr data-step="3"><td>Value at issue</td><td>Intrinsic value</td><td>Time value only</td></tr>
+     <tr data-step="4"><td>Typical use</td><td>Protect existing owners</td><td>Sweetener on a bond or preferred deal</td></tr>
+    </tbody>
+   </table>
+  </div>
+  <p class="tip" data-step="5"><b>Exam tip</b>Short and cheap = right. Long and pricey = warrant.</p>
+ </div>
+</section>
+
+<!-- 18 · SPLIT SIM -->
+<section class="slide" data-section="1.2" data-title="Stock splits" data-sim="split">
+ <div class="slide-inner">
+  <h2>Stock splits: slice the pie <em>differently</em></h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center">
+     <span class="sim-tag">Split machine</span>
+     <div class="seg" role="group" aria-label="Split ratio" id="sp-ratios">
+      <button data-a="2" data-b="1" aria-pressed="true">2:1</button><button data-a="3" data-b="1" aria-pressed="false">3:1</button><button data-a="3" data-b="2" aria-pressed="false">3:2</button><button data-a="1" data-b="5" aria-pressed="false">1:5</button><button data-a="1" data-b="10" aria-pressed="false">1:10</button>
+     </div>
+    </div>
+    <div class="cols" style="--n:2">
+     <div class="ctl"><label for="sp-shares">Shares before</label><input type="number" id="sp-shares" value="100" min="1" max="100000"></div>
+     <div class="ctl"><label for="sp-price">Price before ($)</label><input type="number" id="sp-price" value="300" min="0.01" step="0.01"></div>
+    </div>
+    <div class="dots" id="sp-dots" aria-hidden="true"></div>
+    <div class="readout">
+     <div><div class="k">Shares after</div><div class="v" id="sp-ns">200</div></div>
+     <div><div class="k">Price after</div><div class="v" id="sp-np">$150</div></div>
+     <div><div class="k">Total value</div><div class="v pos" id="sp-val">$30,000</div></div>
+    </div>
+    <div class="formula" id="sp-f"></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <div class="card" data-step="1"><span class="k">Forward split (2:1)</span><b>More shares, lower price</b><p>Used when the price feels too high for everyday investors.</p></div>
+    <div class="card" data-step="2"><span class="k">Reverse split (1:5)</span><b>Fewer shares, higher price</b><p>Used when the price is too low. Lifts it instantly.</p></div>
+    <p class="tip" data-step="3"><b>Exam tip</b>Total value and your ownership % never change. Splits need shareholder approval (they change par value).</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 19 · LIQUIDATION SIM -->
+<section class="slide" data-section="1.2" data-title="Priority in liquidation" data-sim="liquidation">
+ <div class="slide-inner">
+  <h2>If the company dissolves, common is <em>last in line</em></h2>
+  <div class="sim">
+   <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center">
+    <span class="sim-tag">Pay the claims</span>
+    <span class="mono" style="font-size:13px;color:var(--ink-2)">Claims in $ millions</span>
+   </div>
+   <div class="ctl"><label for="lq-p">Cash raised from selling assets <output id="lq-p-o">$60M</output></label><input type="range" id="lq-p" min="0" max="130" step="1" value="60"></div>
+   <div id="lq-rows" style="display:flex;flex-direction:column;gap:8px"></div>
+  </div>
+  <p class="tip" data-step="1"><b>Exam tip</b>Creditors (bondholders) → preferred → common. Common holds the <u>residual claim</u>: only what's left, often nothing.</p>
+ </div>
+</section>
+
+<!-- 20 · LIMITED LIABILITY -->
+<section class="slide" data-section="1.2" data-title="Limited liability">
+ <div class="slide-inner">
+  <h2>Worst case: you lose <em>what you paid</em></h2>
+  <div class="split">
+   <div class="card" data-step="1" style="padding:22px;gap:12px"><span class="k">Company goes bankrupt</span><div class="big neg">owes $500M</div><p>Creditors can't come after your house or savings.</p></div>
+   <div class="card" data-step="2" style="padding:22px;gap:12px;border-color:var(--accent)"><span class="k">You invested $5,000</span><div class="big">max loss $5,000</div><p>That's <b>limited liability</b>: your risk is capped at your investment.</p></div>
+  </div>
+  <p class="tip" data-step="3"><b>Exam tip</b>Common stock: max loss = amount invested. Max gain = unlimited.</p>
+ </div>
+</section>
+
+<!-- 21 · TRANSFER AGENT -->
+<section class="slide" data-section="1.2" data-title="Transfer agent">
+ <div class="slide-inner">
+  <h2>The <em>transfer agent</em> keeps the owner list</h2>
+  <div class="split">
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <div class="ledger">
+     <div class="hd"><span>Owner register · book entry</span><span class="pos" style="font-weight:700">T+1</span></div>
+     <div class="lrow"><span>Seller</span><span>100 sh</span><i class="strike" data-step="1"></i></div>
+     <div class="lrow" data-step="2"><span>Buyer</span><span style="display:flex;gap:10px;align-items:center">100 sh <b class="issued" data-step="3">ISSUED</b></span></div>
+    </div>
+    <p class="tip" data-step="4"><b>Exam tip</b>Stock trades settle <b>T+1</b>: trade date plus one business day. Records are electronic (book entry).</p>
+   </div>
+   <div class="steps3">
+    <div data-step="1"><span class="n">1</span><div><h3>Redeem</h3><p>Seller's shares are cancelled</p></div></div>
+    <div data-step="2"><span class="n">2</span><div><h3>Record</h3><p>Buyer is added to the register</p></div></div>
+    <div data-step="3"><span class="n">3</span><div><h3>Issue</h3><p>New shares issued in the buyer's name</p></div></div>
+    <div class="card" data-step="4"><span class="k">Also handles</span><p>Dividend payments, proxy mailings, share counts</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 22 · DIV 1.3 -->
+<section class="slide" data-section="1.3" data-title="Section intro" data-key="div">
+ <div class="slide-inner">
+  <div class="divider"><div class="n">1.3</div><div style="display:flex;flex-direction:column;gap:16px"><h2>Trading</h2><div class="chips"><span class="chip">Primary vs secondary</span><span class="chip">Exchange vs OTC</span><span class="chip">Authorized → outstanding</span><span class="chip">Market cap</span></div></div></div>
+ </div>
+</section>
+
+<!-- 23 · PRIMARY / SECONDARY -->
+<section class="slide" data-section="1.3" data-title="Primary vs secondary market">
+ <div class="slide-inner">
+  <h2>Who gets <em>your money</em>?</h2>
+  <div class="split">
+   <div class="card" data-step="1" style="padding:22px;gap:14px"><span class="k">Primary market · IPO / new issue</span><div class="flow"><span class="node">Investor</span><span class="arrow">$ →</span><span class="node acc">Issuer</span></div><p>The company sells new shares and <b>receives the cash</b>.</p></div>
+   <div class="card" data-step="2" style="padding:22px;gap:14px"><span class="k">Secondary market · everyday trading</span><div class="flow"><span class="node">Investor</span><span class="arrow">$ ⇄</span><span class="node">Investor</span></div><p>Owners trade with each other. The company gets <b>nothing</b>.</p></div>
+  </div>
+  <p class="tip" data-step="3"><b>Exam tip</b>Primary = issuer raises capital. Secondary = investor to investor.</p>
+ </div>
+</section>
+
+<!-- 24 · EXCHANGE VS OTC -->
+<section class="slide" data-section="1.3" data-title="Exchange vs OTC">
+ <div class="slide-inner">
+  <h2>Where stocks <em>trade</em></h2>
+  <div class="split">
+   <div class="card" data-step="1" style="padding:22px;gap:12px"><span class="k">Exchange-listed · NYSE, Nasdaq</span><div class="bar-h"><i style="width:92%"></i></div><b>Meets listing standards. Lots of buyers and sellers.</b><p>High liquidity: easy to sell fast at a fair price.</p></div>
+   <div class="card" data-step="2" style="padding:22px;gap:12px"><span class="k">Over-the-counter (OTC)</span><div class="bar-h"><i style="width:34%;background:var(--amber)"></i></div><b>Dealer network. Often smaller, newer companies.</b><p>Fewer traders, so selling can push the price down.</p></div>
+  </div>
+  <p class="tip" data-step="3"><b>Exam tip</b>OTC stocks carry more <u>liquidity</u> (marketability) risk than listed stocks.</p>
+ </div>
+</section>
+
+<!-- 25 · FUNNEL SIM -->
+<section class="slide" data-section="1.3" data-title="Authorized → outstanding" data-sim="funnel">
+ <div class="slide-inner">
+  <h2>Authorized → issued → <em>outstanding</em></h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <span class="sim-tag">Try it</span>
+    <div class="fn-bars">
+     <div class="fn-bar"><i style="width:100%;background:var(--surface-2)"></i><span id="fn-auth">Authorized 1,000,000</span></div>
+     <div class="fn-bar"><i id="fn-iss-bar" style="background:var(--accent-soft)"></i><span id="fn-iss">Issued</span></div>
+     <div class="fn-bar"><i id="fn-out-bar" style="background:var(--accent)"></i><i id="fn-tre-bar" style="background:var(--amber)"></i><span id="fn-out" style="color:var(--on-accent)">Outstanding</span></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+     <button class="btn small" id="fn-buyback">Buy back 50k</button>
+     <button class="btn small" id="fn-reissue">Reissue 50k</button>
+     <button class="btn small" id="fn-issue">Issue 100k new</button>
+    </div>
+    <div class="cols" style="--n:2"><div class="ctl"><label for="fn-price">Share price ($)</label><input type="number" id="fn-price" value="40" min="0.01" step="0.01"></div><div></div></div>
+    <div class="readout">
+     <div><div class="k">Treasury</div><div class="v" id="fn-tre">0</div></div>
+     <div><div class="k">Outstanding</div><div class="v" id="fn-outv">600,000</div></div>
+     <div><div class="k">Market cap</div><div class="v pos" id="fn-cap">$24M</div></div>
+    </div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <ul class="pts"><li><b>Authorized</b>: max the charter allows</li><li><b>Issued</b>: ever sold to investors</li><li><b>Treasury</b>: bought back by the company</li><li><b>Outstanding</b> = issued − treasury</li></ul>
+    <p class="tip" data-step="1"><b>Exam tip</b>Treasury shares get no votes and no dividends. Market cap = price × <u>outstanding</u> shares.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- NEW · PAR / BOOK / MARKET -->
+<section class="slide" data-section="1.3" data-title="Par, book, market">
+ <div class="slide-inner">
+  <h2>Three kinds of <em>value</em></h2>
+  <div class="cols" style="--n:3">
+   <div class="card" data-step="1"><span class="k">Par</span><b>An accounting number, e.g. $1</b><p>Nothing to do with price.</p></div>
+   <div class="card" data-step="2"><span class="k">Book</span><b>Assets − liabilities − preferred, per share</b><p>A rough liquidation value.</p></div>
+   <div class="card" data-step="3"><span class="k">Market</span><b>What buyers pay today</b><p>Set by supply &amp; demand.</p></div>
+  </div>
+  <p class="tip" data-step="3"><b>Exam tip</b>Only market value tells you what your shares are worth right now.</p>
+ </div>
+</section>
+
+<!-- NEW · ADRs -->
+<section class="slide" data-section="1.3" data-title="ADRs">
+ <div class="slide-inner">
+  <h2>ADRs: foreign stock, <em>U.S. dollars</em></h2>
+  <div class="flow">
+   <span class="node" data-step="1">Foreign shares</span><span class="arrow" data-step="2">→</span>
+   <span class="node soft" data-step="2">U.S. bank (custodian abroad)</span><span class="arrow" data-step="3">→</span>
+   <span class="node acc" data-step="3">ADRs trade in the U.S. in $</span>
+  </div>
+  <ul class="pts" data-step="3">
+   <li>Dividends paid in dollars</li>
+   <li>Still carries currency risk</li>
+   <li>Sponsored ADRs usually vote; unsponsored usually don't</li>
+  </ul>
+  <p class="tip" data-step="4"><b>Exam tip</b>ADRs make foreign stocks easy to buy. They do not remove currency risk.</p>
+ </div>
+</section>
+
+<!-- 26 · DIV 1.4 -->
+<section class="slide" data-section="1.4" data-title="Section intro" data-key="div">
+ <div class="slide-inner">
+  <div class="divider"><div class="n">1.4</div><div style="display:flex;flex-direction:column;gap:16px"><h2>Suitability</h2><div class="chips"><span class="chip">Benefits</span><span class="chip">Systematic risk</span><span class="chip">Non-systematic risk</span><span class="chip">Market cap tiers</span></div></div></div>
+ </div>
+</section>
+
+<!-- 27 · BENEFITS -->
+<section class="slide" data-section="1.4" data-title="Why own stock">
+ <div class="slide-inner">
+  <h2>Why own common stock?</h2>
+  <div class="split">
+   <div class="card" data-step="1" style="padding:22px;gap:12px"><span class="k">Capital appreciation · growth</span>
+    <svg class="viz" viewBox="0 0 300 120" aria-hidden="true"><polyline points="10,110 70,92 120,96 170,62 220,50 270,18" class="f-none s-accent" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M270 18 L292 2" class="s-accent" stroke-width="4" stroke-dasharray="4 6" stroke-linecap="round"/><text x="290" y="112" text-anchor="end" font-size="13" class="f-ink2">no ceiling</text></svg>
+    <b>Unlimited upside. Every common stock can grow.</b></div>
+   <div class="card" data-step="2" style="padding:22px;gap:12px"><span class="k">Income · dividends</span>
+    <svg class="viz" viewBox="0 0 300 120" aria-hidden="true"><g><rect x="30" y="80" width="40" height="30" rx="4" class="f-amber"/><rect x="90" y="70" width="40" height="40" rx="4" class="f-amber"/><rect x="150" y="60" width="40" height="50" rx="4" class="f-amber"/><rect x="210" y="48" width="40" height="62" rx="4" class="f-amber"/></g></svg>
+    <b>Mostly from <span class="pos">blue chips</span>: big, established, profitable.</b></div>
+  </div>
+  <p class="tip" data-step="3"><b>Exam tip</b>Over the long run stocks tend to outpace inflation, which makes them an inflation hedge.</p>
+ </div>
+</section>
+
+<!-- 28 · TWO FAMILIES -->
+<section class="slide" data-section="1.4" data-title="Two families of risk">
+ <div class="slide-inner">
+  <h2>Two families of <em>risk</em></h2>
+  <div class="split">
+   <div class="card" data-step="1" style="padding:22px;gap:12px;border-color:var(--red)"><span class="k">Systematic · hits the whole market</span><b>Can't diversify it away</b><div class="chips"><span class="chip">Market risk</span><span class="chip">Inflation (purchasing power) risk</span><span class="chip">Interest rate risk</span></div></div>
+   <div class="card" data-step="2" style="padding:22px;gap:12px;border-color:var(--accent)"><span class="k">Non-systematic · one company or sector</span><b>Diversification reduces it</b><div class="chips"><span class="chip">Concentration</span><span class="chip">Financial</span><span class="chip">Business</span><span class="chip">Regulatory</span><span class="chip">Legislative</span><span class="chip">Political</span><span class="chip">Liquidity</span></div></div>
+  </div>
+  <p class="tip" data-step="3"><b>Exam tip</b>"Systematic" sounds like "system": the whole system goes down together.</p>
+ </div>
+</section>
+
+<!-- 29 · SORTER -->
+<section class="slide" data-section="1.4" data-title="Sort the risks" data-sim="sorter">
+ <div class="slide-inner">
+  <h2>Sort the risks</h2>
+  <div class="sim">
+   <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><span class="sim-tag">Drag or tap a card, then a bucket</span><button class="btn small" id="rs-reset">Shuffle again</button></div>
+   <div class="tray" id="rs-tray"></div>
+   <div class="cols" style="--n:2">
+    <div class="bucket" data-type="sys" role="button" tabindex="0" aria-label="Systematic bucket"><h3>Systematic</h3><span class="sub">Whole market</span><div class="bucket-list"></div></div>
+    <div class="bucket" data-type="non" role="button" tabindex="0" aria-label="Non-systematic bucket"><h3>Non-systematic</h3><span class="sub">One company or sector</span><div class="bucket-list"></div></div>
+   </div>
+   <div class="feedback" id="rs-fb" aria-live="polite">Pick a card to start.</div>
+  </div>
+ </div>
+</section>
+
+<!-- 30 · DIVERSIFICATION -->
+<section class="slide" data-section="1.4" data-title="Diversification" data-sim="divers">
+ <div class="slide-inner">
+  <h2>Diversify: one kind of risk <em>shrinks</em></h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <span class="sim-tag">Try it</span>
+    <svg class="viz" id="dv-svg" viewBox="0 0 520 280" aria-label="Risk falls as the number of stocks rises, down to the systematic floor"></svg>
+    <div class="ctl"><label for="dv-n">Different stocks you hold <output id="dv-n-o">1</output></label><input type="range" id="dv-n" min="1" max="40" step="1" value="1"></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <div class="readout"><div><div class="k">Non-systematic</div><div class="v pos" id="dv-ns">60</div></div><div><div class="k">Systematic</div><div class="v neg" id="dv-s">20</div></div></div>
+    <ul class="pts"><li>Holding one stock = <b>concentration risk</b></li><li>Add more and company-specific risk fades</li><li>The market floor never moves</li></ul>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 31 · CAP LADDER -->
+<section class="slide" data-section="1.4" data-title="Market cap tiers" data-sim="cap">
+ <div class="slide-inner">
+  <h2>Market cap <em>tiers</em></h2>
+  <div class="split">
+   <div class="sim">
+    <span class="sim-tag">Slide the size</span>
+    <div><span class="mono" style="font-size:11px;color:var(--ink-2);letter-spacing:.1em">MARKET CAP</span><div class="big" id="cap-v">$5B</div></div>
+    <div class="ctl"><label for="cap-r">Company size</label><input type="range" id="cap-r" min="0" max="1000" step="1" value="500"></div>
+    <div class="formula">Market cap = <b>share price × shares outstanding</b></div>
+   </div>
+   <div class="ladder" id="cap-ladder">
+    <div class="rung" data-min="2e11"><b>Mega</b><span>$200B and up</span></div>
+    <div class="rung" data-min="1e10"><b>Large</b><span>$10B – $200B</span></div>
+    <div class="rung" data-min="2e9"><b>Mid</b><span>$2B – $10B</span></div>
+    <div class="rung" data-min="2.5e8"><b>Small</b><span>$250M – $2B</span></div>
+    <div class="rung" data-min="0"><b>Micro</b><span>under $250M</span></div>
+   </div>
+  </div>
+  <p class="tip" data-step="1"><b>Exam tip</b>Smaller cap = more growth potential, more risk.</p>
+ </div>
+</section>
+
+<!-- 32 · DIV 1.5 -->
+<section class="slide" data-section="1.5" data-title="Section intro" data-key="div">
+ <div class="slide-inner">
+  <div class="divider"><div class="n">1.5</div><div style="display:flex;flex-direction:column;gap:16px"><h2>Fundamental analysis</h2><div class="chips"><span class="chip">Balance sheet</span><span class="chip">Stockholders' equity</span><span class="chip">Income statement</span><span class="chip">P/E ratio</span></div></div></div>
+ </div>
+</section>
+
+<!-- 33 · BALANCE SCALE -->
+<section class="slide" data-section="1.5" data-title="The balance sheet" data-key="balance">
+ <div class="slide-inner">
+  <h2>Balance sheet: a <em>snapshot</em></h2>
+  <div class="split">
+   <svg class="viz" viewBox="0 0 520 280" aria-label="Scale: assets balance liabilities plus net worth">
+    <polygon points="260,120 230,250 290,250" class="f-ink2"/>
+    <rect x="200" y="248" width="120" height="10" rx="4" class="f-ink2"/>
+    <g id="bal-beam">
+     <rect x="50" y="112" width="420" height="10" rx="5" class="f-ink"/>
+     <g data-step="1"><rect x="60" y="30" width="140" height="80" rx="8" class="f-accent"/><text x="130" y="76" text-anchor="middle" font-size="18" font-weight="800" class="f-bg">Assets</text></g>
+     <g data-step="2"><rect x="320" y="62" width="140" height="48" rx="8" class="f-red"/><text x="390" y="92" text-anchor="middle" font-size="15" font-weight="800" class="f-bg">Liabilities</text></g>
+     <g data-step="3"><rect x="320" y="26" width="140" height="34" rx="8" class="f-amber"/><text x="390" y="48" text-anchor="middle" font-size="14" font-weight="800" class="f-bg">Net worth</text></g>
+    </g>
+   </svg>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <ul class="pts"><li>Shows what a company <b>owns</b> and <b>owes</b></li><li>At a <b>single point in time</b></li></ul>
+    <div class="formula" data-step="3">Assets − Liabilities = <b>Net worth</b><br><span style="color:var(--ink-2)">(also called stockholders' equity)</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 34 · WHAT GOES WHERE -->
+<section class="slide" data-section="1.5" data-title="What goes where">
+ <div class="slide-inner">
+  <h2>What goes <em>where</em></h2>
+  <div class="cat-grid">
+   <div class="cat a" data-step="1"><span class="k">Current assets</span><ul><li>Cash</li><li>Accounts receivable</li><li>Inventory</li><li>Prepaid expenses</li></ul></div>
+   <div class="cat a" data-step="1"><span class="k">Fixed assets</span><ul><li>Real estate, land</li><li>Equipment</li><li>Vehicles</li><li>Furniture</li></ul></div>
+   <div class="cat a" data-step="1"><span class="k">Intangible assets</span><ul><li>Patents</li><li>Trademarks</li><li>Copyrights</li><li>Trade secrets</li></ul></div>
+   <div class="cat l" data-step="2"><span class="k">Current liabilities</span><ul><li>Accounts payable</li><li>Wages, taxes, interest payable</li><li>Loan principal due within 12 months</li></ul></div>
+   <div class="cat l" data-step="2"><span class="k">Long-term liabilities</span><ul><li>Bonds &amp; notes over 1 year</li><li>Mortgages</li><li>Pensions</li></ul></div>
+  </div>
+  <p class="tip" data-step="3"><b>Exam tip</b>"Current" means within one year. Receivable = owed <u>to</u> you. Payable = you owe it.</p>
+ </div>
+</section>
+
+<!-- 35 · EQUITY STACK -->
+<section class="slide" data-section="1.5" data-title="Stockholders' equity">
+ <div class="slide-inner">
+  <h2>What's inside <em>stockholders' equity</em></h2>
+  <div class="split">
+   <div class="eq-stack" style="justify-self:center">
+    <div class="eq-block" data-step="1" style="background:var(--accent);color:var(--on-accent)"><span>Par value</span><span class="num">$1M</span></div>
+    <div class="eq-block" data-step="2" style="background:var(--accent-soft);padding-block:40px"><span>Capital in excess of par</span><span class="num">$19M</span></div>
+    <div class="eq-block" data-step="3" style="background:var(--amber-soft)"><span>Retained earnings</span><span class="num">profits kept</span></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <div class="card"><span class="k">Example IPO</span><b>1,000,000 shares sold at $20, par value $1</b></div>
+    <ul class="pts"><li data-step="1">Par: 1M × $1 = <b>$1M</b></li><li data-step="2">Premium over par: 1M × $19 = <b>$19M</b></li><li data-step="3">Plus profits not paid out as dividends</li></ul>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 36 · WATERFALL -->
+<section class="slide" data-section="1.5" data-title="Income statement" data-sim="waterfall">
+ <div class="slide-inner">
+  <h2>Income statement: a <em>period</em> of time</h2>
+  <div class="sim">
+   <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><span class="sim-tag">Build the statement</span><span class="mono" style="font-size:13px;color:var(--ink-2)">$ millions</span></div>
+   <div class="scroll-x"><svg id="wf-svg" viewBox="0 0 720 320" style="min-width:600px;width:100%;height:auto;display:block" aria-label="Income statement waterfall"></svg></div>
+   <div class="cols" style="--n:3">
+    <div class="ctl"><label for="wf-rev">Revenue <output id="wf-rev-o"></output></label><input type="range" id="wf-rev" min="200" max="2000" step="50" value="1000"></div>
+    <div class="ctl"><label for="wf-cogs">Cost of goods sold <output id="wf-cogs-o"></output></label><input type="range" id="wf-cogs" min="0" max="1500" step="10" value="600"></div>
+    <div class="ctl"><label for="wf-opex">Operating expenses <output id="wf-opex-o"></output></label><input type="range" id="wf-opex" min="0" max="800" step="10" value="200"></div>
+    <div class="ctl"><label for="wf-int">Interest <output id="wf-int-o"></output></label><input type="range" id="wf-int" min="0" max="300" step="5" value="50"></div>
+    <div class="ctl"><label for="wf-tax">Tax rate <output id="wf-tax-o"></output></label><input type="range" id="wf-tax" min="0" max="40" step="1" value="21"></div>
+    <div class="ctl"><label for="wf-div">Dividends paid <output id="wf-div-o"></output></label><input type="range" id="wf-div" min="0" max="300" step="5" value="40"></div>
+   </div>
+   <div class="formula">Revenue − COGS = <b>Gross profit</b> − OpEx = <b>EBIT</b> − Interest = <b>EBT</b> − Taxes = <b>Net income</b> − Dividends = <b>Retained earnings</b></div>
+  </div>
+  <p class="tip" data-step="1"><b>Exam tip</b>EBIT = operating income. Net income = profit after <u>everything</u>. Retained earnings flow to the balance sheet.</p>
+ </div>
+</section>
+
+<!-- 37 · P/E -->
+<section class="slide" data-section="1.5" data-title="P/E ratio" data-sim="pe">
+ <div class="slide-inner">
+  <h2>P/E ratio: price vs <em>earnings</em></h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <span class="sim-tag">Try it</span>
+    <svg class="viz" id="pe-svg" viewBox="0 0 320 190" style="max-width:420px;align-self:center" aria-label="P/E gauge"></svg>
+    <div class="cols" style="--n:2">
+     <div class="ctl"><label for="pe-p">Share price <output id="pe-p-o"></output></label><input type="range" id="pe-p" min="1" max="400" step="1" value="80"></div>
+     <div class="ctl"><label for="pe-e">Earnings per share <output id="pe-e-o"></output></label><input type="range" id="pe-e" min="0.5" max="20" step="0.5" value="4"></div>
+    </div>
+    <div class="formula" id="pe-f"></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <div class="card"><span class="k">Low P/E · value</span><b>Established, steady profits, often pays dividends</b><p>e.g. a big telecom company</p></div>
+    <div class="card"><span class="k">High P/E · growth</span><b>Investors pay up for <u>future</u> earnings</b><p>Some trade at 100× or more</p></div>
+    <p class="tip" data-step="1"><b>Exam tip</b>P/E = market price ÷ EPS. A typical range is about 15–25.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 38 · MUST REMEMBER -->
+<section class="slide" data-section="end" data-title="Must-remember sheet">
+ <div class="slide-inner">
+  <p class="eyebrow">Chapter 1 · Review</p>
+  <h2>The <em>must-remember</em> sheet</h2>
+  <div class="remember" id="remember">
+   <div class="card"><span class="k">1.1</span><b>Common stock = equity = ownership</b></div>
+   <div class="card"><span class="k">1.1</span><b>Profit two ways: price goes up, dividends</b></div>
+   <div class="card"><span class="k">1.1</span><b>Cyclical swings with the economy; defensive (utilities, healthcare, food) holds</b></div>
+   <div class="card"><span class="k">1.2</span><b>Board declares dividends; paid pro-rata; no shareholder vote</b></div>
+   <div class="card"><span class="k">1.2</span><b>Split &amp; stock dividend: shares × factor, price ÷ factor, value unchanged</b></div>
+   <div class="card"><span class="k">1.2</span><b>Cumulative votes = shares × seats; helps small holders</b></div>
+   <div class="card"><span class="k">1.2</span><b>10-K annual, audited · 10-Q quarterly, unaudited</b></div>
+   <div class="card"><span class="k">1.2</span><b>Rights: 30–45 days, below market · Warrants: 5+ yrs, above market</b></div>
+   <div class="card"><span class="k">1.2</span><b>Liquidation: creditors → preferred → common (residual, last)</b></div>
+   <div class="card"><span class="k">1.2</span><b>Transfer agent keeps owner records; trades settle T+1</b></div>
+   <div class="card"><span class="k">1.3</span><b>Outstanding = issued − treasury; treasury has no vote, no dividend</b></div>
+   <div class="card"><span class="k">1.3</span><b>Market cap = price × outstanding shares</b></div>
+   <div class="card"><span class="k">1.4</span><b>Systematic (market, inflation, interest rate) can't be diversified away</b></div>
+   <div class="card"><span class="k">1.4</span><b>Mega $200B+ · Large $10B+ · Mid $2B+ · Small $250M+ · Micro</b></div>
+   <div class="card"><span class="k">1.5</span><b>Balance sheet = snapshot; A − L = net worth</b></div>
+   <div class="card"><span class="k">1.5</span><b>Net income − dividends = retained earnings · P/E = price ÷ EPS</b></div>
+  </div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn primary" href="quiz.html">Take the quiz →</a><a class="btn" href="textbook.html">Read the textbook</a></div>
+ </div>
+</section>
+
+</main>
+
+<footer class="bottom">
+  <button class="btn" id="prev">← Back</button>
+  <span class="mono" id="count" style="font-size:13px;color:var(--ink-2)">1 / 42</span>
+  <span class="spacer"></span>
+  <span class="hint">← → keys · tap to advance</span>
+  <button class="btn primary" id="next">Next →</button>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+<script src="learn.js"></script>
+</body>
+</html>
