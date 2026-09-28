@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Chapter 2 Textbook · SIE Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Cormorant+Garamond:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/theme.css">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/textbook.css">
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="../../index.html">SIE <b>Study</b></a>
+  <a class="crumb" href="index.html">← Chapter 2</a>
+  <span class="spacer"></span>
+  <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch theme">☾</button>
+</div></header>
+
+<div class="wrap tb">
+  <nav class="tb-toc" aria-label="Chapter contents">
+    <details open id="toc-details"><summary>Contents</summary>
+      <ol>
+        <li><a href="#s2-1"><span class="num">2.1</span> Basic characteristics</a>
+          <ol>
+            <li><a href="#s2-1-dividends">Dividends and par</a></li>
+            <li><a href="#s2-1-yield">Price and yield</a></li>
+            <li><a href="#s2-1-rates">Interest rates</a></li>
+          </ol></li>
+        <li><a href="#s2-2"><span class="num">2.2</span> Features</a>
+          <ol>
+            <li><a href="#s2-2-cumulative">Cumulative vs straight</a></li>
+            <li><a href="#s2-2-participating">Participating</a></li>
+            <li><a href="#s2-2-callable">Callable</a></li>
+            <li><a href="#s2-2-convertible">Convertible</a></li>
+            <li><a href="#s2-2-effects">Who each feature helps</a></li>
+          </ol></li>
+        <li><a href="#s2-3"><span class="num">2.3</span> Suitability</a>
+          <ol>
+            <li><a href="#s2-3-benefits">Benefits</a></li>
+            <li><a href="#s2-3-risks">Risks</a></li>
+            <li><a href="#s2-3-investor">The typical investor</a></li>
+          </ol></li>
+      </ol>
+    </details>
+  </nav>
+
+  <article class="tb-body">
+    <header>
+      <span class="label">Chapter 2 · Textbook</span>
+      <h1>Preferred Stock</h1>
+      <p class="lede">Preferred stock is ownership that behaves like a fixed-income investment. This chapter covers how its dividend works, why its price moves with interest rates, the features issuers can build in, and who it suits.</p>
+    </header>
+
+    <!-- ================= 2.1 ================= -->
+    <section id="s2-1" aria-labelledby="h2-1">
+      <h2 id="h2-1"><span class="label sec-label" style="display:block;margin-bottom:8px">Section 2.1</span>Basic characteristics</h2>
+      <p>Preferred stock is an <span class="term">equity</span> security: like common stock, it represents ownership in the company. In practice it behaves much more like a bond. Investors buy it for one main reason: a steady, predictable dividend.</p>
+      <p>It is called "preferred" because it comes ahead of common stock in two ways:</p>
+      <ul class="clean">
+        <li><span class="term">Dividends:</span> the preferred dividend must be paid before any dividend can go to common stockholders.</li>
+        <li><span class="term">Liquidation:</span> if the company is dissolved, preferred stockholders are paid before common stockholders, though still after every creditor.</li>
+      </ul>
+      <p>The trade-off is that preferred stockholders usually have <strong>no voting rights</strong>, and their dividend is fixed, so they don't share in the company's growth the way common stockholders do.</p>
+
+      <div class="sub" id="s2-1-dividends">
+        <h3>Dividends and par value</h3>
+        <p>Every preferred share has a <span class="term">par value</span>. On the exam, assume <strong>$100 par</strong> unless a question says otherwise. The <span class="term">dividend rate</span> (sometimes called the coupon) is set when the stock is issued, as a percentage of par, and it never changes.</p>
+        <p>A $100 par, 5% preferred pays <span class="num">5% × $100 = $5</span> per share per year, usually as four quarterly payments of $1.25. The board of directors still has to approve each payment.</p>
+        <p>The market price of the shares will move around, but par and the dividend rate stay fixed. So the dividend is <strong>always figured from par</strong>, never from the market price. Whether you paid $80 or $120 for that share, you receive $5 a year.</p>
+        <div class="tip"><span class="label">Exam tip</span><p>Dividend = rate × par. If a question gives you a market price, it's testing <em>yield</em>, not the dividend.</p></div>
+      </div>
+
+      <div class="sub" id="s2-1-yield">
+        <h3>Price and yield</h3>
+        <p>The dividend rate is fixed, but the return you actually earn depends on what you paid. That return is the <span class="term">current yield</span>:</p>
+        <p class="formula num">Current yield = annual dividend ÷ market price</p>
+        <p>Price and yield move in opposite directions (an <strong>inverse relationship</strong>):</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Market price</th><th>Called</th><th>Current yield vs dividend rate</th><th>Example ($5 dividend)</th></tr></thead>
+            <tbody>
+              <tr><td class="term">Below par</td><td>Discount</td><td>Yield is <strong>higher</strong> than the rate</td><td class="num">$5 ÷ $80 = 6.25%</td></tr>
+              <tr><td class="term">At par</td><td>Par</td><td>Yield <strong>equals</strong> the rate</td><td class="num">$5 ÷ $100 = 5.00%</td></tr>
+              <tr><td class="term">Above par</td><td>Premium</td><td>Yield is <strong>lower</strong> than the rate</td><td class="num">$5 ÷ $125 = 4.00%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel tool">
+          <span class="label tool-tag">Try it · Dividend and current yield</span>
+          <div class="fields">
+            <div class="field"><label for="y-rate">Dividend rate (%)</label><input type="number" id="y-rate" min="0" max="20" step="0.25" value="5"></div>
+            <div class="field"><label for="y-px">Market price ($)</label><input type="number" id="y-px" min="1" step="0.5" value="80"></div>
+            <div class="field"><label for="y-sh">Shares owned</label><input type="number" id="y-sh" min="1" step="1" value="1000"></div>
+          </div>
+          <div class="out">
+            <div class="stat"><span class="label">Dividend per share</span><span class="v" id="y-div">$5.00</span></div>
+            <div class="stat hl"><span class="label">Current yield</span><span class="v" id="y-yld">6.25%</span></div>
+            <div class="stat"><span class="label">Your yearly income</span><span class="v" id="y-inc">$5,000.00</span></div>
+          </div>
+          <p class="note" id="y-note"></p>
+        </div>
+      </div>
+
+      <div class="sub" id="s2-1-rates">
+        <h3>Interest rates drive the price</h3>
+        <p>Because its dividend is fixed, preferred stock competes with bonds and other fixed-income investments for the same investors. When market interest rates change, the price of existing preferred stock adjusts so its yield stays competitive:</p>
+        <ul class="clean">
+          <li><strong>Rates rise</strong> → new investments pay more, so existing preferred stock is less attractive → its <strong>price falls</strong> and its yield rises.</li>
+          <li><strong>Rates fall</strong> → existing preferred stock's fixed dividend looks better → its <strong>price rises</strong>, which can give holders a capital gain.</li>
+        </ul>
+        <div class="tip"><span class="label">Exam tip</span><p>Preferred stock prices move with interest rates far more than with the company's results. Rates and preferred prices move in opposite directions.</p></div>
+      </div>
+
+      <dl class="keyterms">
+        <span class="label">Key terms</span>
+        <dt>Preferred stock</dt><dd>Equity with a fixed dividend and priority over common stock for dividends and in liquidation.</dd>
+        <dt>Par value</dt><dd>The face amount the dividend is figured from; assume $100.</dd>
+        <dt>Dividend rate</dt><dd>The fixed yearly dividend as a percent of par, set at issuance.</dd>
+        <dt>Current yield</dt><dd>Annual dividend ÷ market price; moves opposite to the price.</dd>
+        <dt>Discount / premium</dt><dd>Trading below / above par.</dd>
+      </dl>
+    </section>
+
+    <!-- ================= 2.2 ================= -->
+    <section id="s2-2" aria-labelledby="h2-2">
+      <h2 id="h2-2"><span class="label sec-label" style="display:block;margin-bottom:8px">Section 2.2</span>Features</h2>
+      <p>When a company issues preferred stock, it can build in features that stay with the shares for their whole life. Some features help the investor; others help the issuer. That affects how the market prices the stock.</p>
+
+      <div class="sub" id="s2-2-cumulative">
+        <h3>Cumulative vs straight (non-cumulative)</h3>
+        <p>The board can skip a preferred dividend; it is not a legal obligation. What happens to the skipped payment depends on the type:</p>
+        <ul class="clean">
+          <li><span class="term">Cumulative preferred:</span> every missed dividend piles up as dividends <em>in arrears</em>. The company must pay all of them, plus the current year's, before it can pay common stockholders anything.</li>
+          <li><span class="term">Straight (non-cumulative) preferred:</span> a missed dividend is gone for good. Only the current year's preferred dividend must be paid before common stockholders get paid.</li>
+        </ul>
+        <p><strong>Worked example.</strong> Apoapsis Launch Co. has $100 par, 5% preferred. It skipped the dividend completely for two years, paid only 3% in the third year, and now in the fourth year wants to pay a dividend on its common stock. Before it can:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Year</th><th>Owed</th><th>Paid</th><th>Cumulative: still owed</th><th>Straight: still owed</th></tr></thead>
+            <tbody>
+              <tr><td>Year 1</td><td class="num">$5</td><td class="num">$0</td><td class="num">$5</td><td class="num">—</td></tr>
+              <tr><td>Year 2</td><td class="num">$5</td><td class="num">$0</td><td class="num">$5</td><td class="num">—</td></tr>
+              <tr><td>Year 3</td><td class="num">$5</td><td class="num">$3</td><td class="num">$2</td><td class="num">—</td></tr>
+              <tr><td>Year 4 (now)</td><td class="num">$5</td><td class="num">—</td><td class="num">$5</td><td class="num">$5</td></tr>
+              <tr><td class="term">Total before common</td><td></td><td></td><td class="num"><strong>$17 (17% of par)</strong></td><td class="num"><strong>$5 (5%)</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel tool">
+          <span class="label tool-tag">Try it · Dividends owed before common</span>
+          <div class="fields">
+            <div class="field"><label for="c-rate">Dividend rate (%)</label><input type="number" id="c-rate" min="0" max="20" step="0.5" value="5"></div>
+            <div class="field"><label for="c-skip">Years fully skipped</label><input type="number" id="c-skip" min="0" max="10" step="1" value="2"></div>
+            <div class="field"><label for="c-part">Then a partial payment of (%)</label><input type="number" id="c-part" min="0" max="20" step="0.5" value="3"></div>
+          </div>
+          <div class="out">
+            <div class="stat hl"><span class="label">Cumulative owes</span><span class="v" id="c-cum">$17.00</span></div>
+            <div class="stat"><span class="label">Straight owes</span><span class="v" id="c-str">$5.00</span></div>
+          </div>
+          <p class="note" id="c-note"></p>
+        </div>
+      </div>
+
+      <div class="sub" id="s2-2-participating">
+        <h3>Participating</h3>
+        <p><span class="term">Participating preferred</span> can receive more than its stated rate when the company has a very profitable year. A 5% participating preferred might pay 12% in a strong year, sharing in profits alongside common stockholders. In a normal year it still gets its 5%.</p>
+      </div>
+
+      <div class="sub" id="s2-2-callable">
+        <h3>Callable</h3>
+        <p><span class="term">Callable preferred</span> lets the issuer buy the shares back ("call" them) at a set price. Once called, the shares stop paying dividends, and the investor simply receives the call price.</p>
+        <p>Issuers call preferred stock mainly to <strong>refinance when interest rates fall</strong>. Suppose a company issued 5% preferred when rates were 5%. If rates drop to 3%, it can issue new 3% preferred and use the money to call the old 5% shares, saving $2 per share every year.</p>
+        <p>Two terms protect the investor somewhat:</p>
+        <ul class="clean">
+          <li><span class="term">Call premium:</span> an amount above par the issuer must pay when it calls, stated as a percent of par. "Callable at 102" means $102 for a $100 par share: a $2 premium.</li>
+          <li><span class="term">Call protection:</span> a period after issuance during which the stock cannot be called. "$100 par, 5% preferred, callable at 102 after 10 years" has 10 years of call protection.</li>
+        </ul>
+        <p>Even so, the call feature works against the investor: calls happen exactly when rates are low, so the investor gets the money back when it can only be reinvested at lower rates. That is <span class="term">reinvestment risk</span>.</p>
+      </div>
+
+      <div class="sub" id="s2-2-convertible">
+        <h3>Convertible</h3>
+        <p><span class="term">Convertible preferred</span> can be exchanged for a set number of common shares of the same company. That number is the <span class="term">conversion ratio</span>, fixed at issuance. A 2:1 ratio means one preferred share converts into two common shares.</p>
+        <p class="formula num">Conversion value = conversion ratio × common stock price</p>
+        <p>With a 2:1 ratio and the common at $60, the conversion value is $120. The preferred should trade at or above that. If it traded at $110, an investor could buy the preferred, convert it and sell the two common shares for $120: a $10 profit with no risk. That is <span class="term">arbitrage</span>, and traders act on it so quickly that the gap closes. The common price at which the two are exactly equal is called <span class="term">parity</span>: preferred price ÷ ratio ($110 ÷ 2 = $55).</p>
+        <p><strong>Worked example.</strong> You buy 100 shares of convertible preferred at $95 (cost $9,500). The conversion ratio is 4:1. The common stock rises from $15 to $30. You convert into 400 common shares (100 × 4) and sell them at $30 for $12,000: a gain of <strong>$2,500</strong>.</p>
+        <p>Conversion lets preferred holders share in the company's growth. Because it creates new common shares, issuing convertible preferred dilutes common stockholders and needs their approval.</p>
+        <div class="panel tool">
+          <span class="label tool-tag">Try it · Conversion value</span>
+          <div class="fields">
+            <div class="field"><label for="v-ratio">Conversion ratio (common per preferred)</label><input type="number" id="v-ratio" min="0.1" step="0.5" value="2"></div>
+            <div class="field"><label for="v-com">Common stock price ($)</label><input type="number" id="v-com" min="0" step="0.5" value="60"></div>
+            <div class="field"><label for="v-pref">Preferred market price ($)</label><input type="number" id="v-pref" min="0" step="0.5" value="110"></div>
+          </div>
+          <div class="out">
+            <div class="stat hl"><span class="label">Conversion value</span><span class="v" id="v-val">$120.00</span></div>
+            <div class="stat"><span class="label">Parity price of common</span><span class="v" id="v-par">$55.00</span></div>
+          </div>
+          <div class="verdict" id="v-verdict"></div>
+        </div>
+      </div>
+
+      <div class="sub" id="s2-2-effects">
+        <h3>Who each feature helps</h3>
+        <p>Investors pay more for features that benefit them. A higher price for the same fixed dividend means a lower yield, so the issuer can get away with a lower dividend rate. Features that benefit the issuer work the other way.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Helps the investor</th><th>Helps the issuer</th></tr></thead>
+            <tbody>
+              <tr><td>Cumulative</td><td>Straight (non-cumulative)</td></tr>
+              <tr><td>Participating</td><td>Callable</td></tr>
+              <tr><td>Convertible</td><td></td></tr>
+              <tr><td class="term">→ higher price, lower dividend rate, lower yield</td><td class="term">→ lower price, higher dividend rate, higher yield</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tip"><span class="label">Also good to know</span><p><span class="term">Adjustable-rate preferred</span> resets its dividend rate periodically to follow a benchmark interest rate. Because its dividend keeps up with the market, its price tends to stay close to par.</p></div>
+      </div>
+
+      <dl class="keyterms">
+        <span class="label">Key terms</span>
+        <dt>Cumulative</dt><dd>Missed dividends accumulate and must be paid before common.</dd>
+        <dt>Straight (non-cumulative)</dt><dd>Missed dividends are lost.</dd>
+        <dt>Participating</dt><dd>Can receive more than the stated rate in profitable years.</dd>
+        <dt>Callable</dt><dd>The issuer can buy the shares back at a set price.</dd>
+        <dt>Call premium / call protection</dt><dd>Amount above par paid on a call / the period when no call is allowed.</dd>
+        <dt>Convertible</dt><dd>Exchangeable for a fixed number of common shares.</dd>
+        <dt>Conversion value</dt><dd>Conversion ratio × common price.</dd>
+      </dl>
+    </section>
+
+    <!-- ================= 2.3 ================= -->
+    <section id="s2-3" aria-labelledby="h2-3">
+      <h2 id="h2-3"><span class="label sec-label" style="display:block;margin-bottom:8px">Section 2.3</span>Suitability</h2>
+
+      <div class="sub" id="s2-3-benefits">
+        <h3>Benefits</h3>
+        <p>The main reason to own preferred stock is <strong>income</strong>: a fixed dividend, usually paid quarterly. Yearly income = dividend rate × par × shares. For example, 5% × $100 × 1,000 shares = $5,000 a year. That makes it popular with retirees replacing a paycheck.</p>
+        <p>Because the dividend is not a legal obligation, preferred stock usually pays a <strong>higher yield than the same company's bonds</strong>: investors want to be paid for that extra risk.</p>
+        <p>Features can add to the return: participating shares can pay extra in good years, and convertible shares can rise with the common stock. Without those features, capital gains are possible but come mostly from falling interest rates rather than company success.</p>
+      </div>
+
+      <div class="sub" id="s2-3-risks">
+        <h3>Risks</h3>
+        <ul class="clean">
+          <li><span class="term">Skipped dividends:</span> the board can skip or suspend dividends when the company is struggling, and holders have no legal recourse. With straight preferred, those dividends are gone for good.</li>
+          <li><span class="term">Liquidation priority:</span> preferred stockholders rank below every creditor. Often little or nothing is left by the time their turn comes.</li>
+          <li><span class="term">Interest rate risk:</span> when rates rise, preferred prices fall. An investor who has to sell may take a loss.</li>
+          <li><span class="term">Reinvestment risk:</span> when rates fall, reinvested dividends earn less, whether you buy more shares at higher prices or new issues at lower rates.</li>
+          <li><span class="term">Call risk:</span> callable shares tend to be called when rates are low, so both the dividends and the returned principal must be reinvested at lower rates.</li>
+          <li><span class="term">Inflation (purchasing power) risk:</span> a fixed dividend buys less as prices rise, and high inflation pushes preferred prices down. Fixed-income investments are hit harder by inflation than common stock.</li>
+        </ul>
+        <div class="tip">
+          <span class="label">Exam tip · Priority in liquidation</span>
+          <p>Unpaid wages → unpaid taxes → secured creditors → unsecured creditors → junior (subordinated) unsecured creditors → <strong>preferred stockholders</strong> → common stockholders.</p>
+        </div>
+      </div>
+
+      <div class="sub" id="s2-3-investor">
+        <h3>The typical investor</h3>
+        <ul class="clean">
+          <li><strong>Wants income first.</strong> Capital appreciation is secondary and mostly depends on interest rates. Investors seeking growth usually choose common stock.</li>
+          <li><strong>Risk-averse, often older,</strong> but willing to accept moderate risk for more income. Preferred stock is riskier than bonds and government debt, and safer than common stock.</li>
+          <li><strong>Long time horizon.</strong> Preferred stock has no maturity date. A long holding period collects more dividends and can ride out price swings caused by interest rates; a short-term holder may be forced to sell after rates jump.</li>
+        </ul>
+        <div class="tip"><span class="label">Exam tip</span><p>Income-focused, fairly conservative, long-term: that is the preferred stock investor. Growth-focused or short-term investors are a poor fit.</p></div>
+      </div>
+
+      <dl class="keyterms">
+        <span class="label">Key terms</span>
+        <dt>Interest rate risk</dt><dd>Prices fall when rates rise.</dd>
+        <dt>Reinvestment risk</dt><dd>Money must be reinvested at lower rates.</dd>
+        <dt>Call risk</dt><dd>Shares are taken back when rates are low.</dd>
+        <dt>Purchasing power risk</dt><dd>Inflation erodes a fixed dividend.</dd>
+      </dl>
+    </section>
+
+    <nav class="tb-next" aria-label="Next steps">
+      <a class="btn" href="learn.html">Try the interactive lesson</a>
+      <a class="btn primary" href="quiz.html">Take the quiz →</a>
+    </nav>
+  </article>
+</div>
+
+<footer class="site-foot"><div class="wrap"><p>SIE Study is independent study material and is not affiliated with or endorsed by FINRA. Examples are fictional.</p></div></footer>
+
+<script src="textbook.js"></script>
+</body>
+</html>

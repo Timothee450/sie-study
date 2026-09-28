@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Chapter 2 Learning · SIE Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Cormorant+Garamond:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/theme.css">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/deck.css">
+<style>
+.years{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.yr{border-radius:12px;padding:10px;background:var(--bg);display:flex;flex-direction:column;gap:4px;font-size:13px;text-align:center}
+.yr b{font:700 18px var(--f-mono)}
+.yr.skip{background:var(--red-soft)} .yr.part{background:var(--amber-soft)} .yr.now{background:var(--accent-soft)}
+.spectrum{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.spectrum .node{display:flex;flex-direction:column;gap:4px;justify-content:center;min-height:84px}
+.spectrum .node span{font:500 12px var(--f-mono);opacity:.8}
+.rung.pref{outline:3px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <a class="crumb" href="index.html">← Chapter 2</a>
+  <button class="brand" id="menu-btn" aria-expanded="false" aria-controls="menu">Contents <span class="caret">▾</span></button>
+  <div class="track" id="track"><div class="fill" id="fill"></div></div>
+  <span class="sec-label" id="sec-label">Intro</span>
+  <nav class="menu" id="menu" hidden aria-label="Jump to section"></nav>
+  <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch theme">☾</button>
+</header>
+
+<main class="stage" id="stage">
+
+<!-- TITLE -->
+<section class="slide" data-section="intro" data-title="Welcome" data-key="title">
+ <div class="slide-inner">
+  <div class="split">
+   <div style="display:flex;flex-direction:column;gap:22px">
+    <p class="eyebrow">SIE Exam · Chapter 2</p>
+    <h1>Preferred<br><em>Stock</em></h1>
+    <p class="lede">Ownership that pays like a bond. Three sections: how the dividend works, the features issuers build in, and who it suits.</p>
+    <div class="chips"><span class="chip">2.1 Basics</span><span class="chip">2.2 Features</span><span class="chip">2.3 Suitability</span></div>
+    <div><button class="btn primary" id="start-btn">Start the walkthrough →</button></div>
+   </div>
+   <div class="cert">
+    <div class="cert-in">
+     <span class="k">Preferred stock certificate</span>
+     <svg class="rosette" viewBox="-80 -80 160 160" aria-hidden="true" id="rosette"></svg>
+     <p>This certifies that</p>
+     <span class="name">YOU</span>
+     <p>own <b class="num">100</b> shares of the 5% cumulative preferred stock of Apoapsis Launch Co.</p>
+     <div class="cert-row"><span>No. P-000001</span><span>Par value $100</span></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- WHERE IT SITS -->
+<section class="slide" data-section="intro" data-title="Between bonds and common">
+ <div class="slide-inner">
+  <h2>Preferred sits <em>between</em> bonds and common</h2>
+  <div class="scroll-x card" style="padding:4px 8px">
+   <table class="tbl">
+    <thead><tr><th></th><th>Bond</th><th>Preferred</th><th>Common</th></tr></thead>
+    <tbody>
+     <tr data-step="1"><td>You are a…</td><td>Lender</td><td>Owner</td><td>Owner</td></tr>
+     <tr data-step="2"><td>You get…</td><td>Interest, legally owed</td><td>Fixed dividend, board declares</td><td>Dividend if the board wants</td></tr>
+     <tr data-step="3"><td>Vote?</td><td>No</td><td>Usually no</td><td>Yes</td></tr>
+     <tr data-step="4"><td>If it fails</td><td>Paid before stock</td><td>After creditors, before common</td><td>Paid last</td></tr>
+    </tbody>
+   </table>
+  </div>
+  <p class="tip" data-step="4"><b>Exam tip</b>Preferred is equity that behaves like fixed income. People buy it for the steady dividend.</p>
+ </div>
+</section>
+
+<!-- DIV 2.1 -->
+<section class="slide" data-section="2.1" data-title="Section intro" data-key="div">
+ <div class="slide-inner">
+  <div class="divider"><div class="n">2.1</div><div style="display:flex;flex-direction:column;gap:16px"><h2>Basic characteristics</h2><div class="chips"><span class="chip">$100 par</span><span class="chip">Fixed dividend</span><span class="chip">Price vs yield</span><span class="chip">Interest rates</span></div></div></div>
+ </div>
+</section>
+
+<!-- WHY "PREFERRED" -->
+<section class="slide" data-section="2.1" data-title="Why it's called preferred">
+ <div class="slide-inner">
+  <h2>Why it's called <em>preferred</em></h2>
+  <div class="cols" style="--n:2">
+   <div class="card" data-step="1"><span class="k">Dividends first</span><b>The preferred dividend is paid before any common dividend</b></div>
+   <div class="card" data-step="2"><span class="k">Liquidation first (among owners)</span><b>Paid before common stockholders, after every creditor</b></div>
+   <div class="card" data-step="3"><span class="k">The trade-off</span><b>Usually no vote</b><p>And the dividend is fixed, so no share in growth.</p></div>
+   <div class="card" data-step="3"><span class="k">What it is</span><b>Equity, but it acts like fixed income</b><p>Price moves with interest rates.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- DIVIDEND FROM PAR -->
+<section class="slide" data-section="2.1" data-title="Dividends come from par" data-sim="pardiv">
+ <div class="slide-inner">
+  <h2>The dividend comes from <em>par</em>, not price</h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <span class="sim-tag">Try it</span>
+    <div class="ctl"><label for="pd-rate">Dividend rate <output id="pd-rate-o">5%</output></label><input type="range" id="pd-rate" min="1" max="10" step="0.5" value="5"></div>
+    <div class="ctl"><label for="pd-px">Market price <output id="pd-px-o">$100</output></label><input type="range" id="pd-px" min="50" max="150" step="1" value="100"></div>
+    <div class="readout">
+     <div><div class="k">Par</div><div class="v">$100</div></div>
+     <div><div class="k">Yearly dividend</div><div class="v pos" id="pd-div">$5.00</div></div>
+     <div><div class="k">Each quarter</div><div class="v" id="pd-q">$1.25</div></div>
+    </div>
+    <div class="formula" id="pd-f">Dividend = <b>5%</b> × $100 par = <b>$5.00</b></div>
+   </div>
+   <ul class="pts">
+    <li>Assume <b>$100 par</b> unless told otherwise</li>
+    <li data-step="1">Rate is fixed at issuance and never changes</li>
+    <li data-step="1">Usually paid quarterly; the board still declares each one</li>
+    <li data-step="2">Move the price: the dividend doesn't budge</li>
+   </ul>
+  </div>
+ </div>
+</section>
+
+<!-- PRICE VS YIELD -->
+<section class="slide" data-section="2.1" data-title="Price and yield" data-sim="seesaw">
+ <div class="slide-inner">
+  <h2>Price up, yield <em>down</em></h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <span class="sim-tag">Try it · 5% preferred, $5 a year</span>
+    <svg class="viz" viewBox="0 0 400 190" aria-label="Seesaw: market price on the left, current yield on the right">
+     <polygon points="200,112 180,168 220,168" class="f-ink2"/>
+     <g id="ss-beam">
+      <rect x="40" y="104" width="320" height="8" rx="4" class="f-ink"/>
+      <rect x="40" y="80" width="88" height="24" rx="6" class="f-accent-soft"/>
+      <rect x="272" y="80" width="88" height="24" rx="6" class="f-amber-soft"/>
+      <text x="84" y="97" text-anchor="middle" font-size="13" font-weight="700" class="f-accent" id="ss-pl">$100</text>
+      <text x="316" y="97" text-anchor="middle" font-size="13" font-weight="700" class="f-amber" id="ss-yl">5.00%</text>
+      <text x="84" y="70" text-anchor="middle" font-size="11" class="f-ink2">PRICE</text>
+      <text x="316" y="70" text-anchor="middle" font-size="11" class="f-ink2">YIELD</text>
+     </g>
+    </svg>
+    <div class="ctl"><label for="ss-px">Market price <output id="ss-px-o">$100</output></label><input type="range" id="ss-px" min="60" max="140" step="1" value="100"></div>
+    <div class="formula" id="ss-f"></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <div class="card"><span class="k">Current yield</span><b>Annual dividend ÷ market price</b></div>
+    <ul class="pts">
+     <li data-step="1"><b>Discount</b> (below par): yield &gt; rate</li>
+     <li data-step="1"><b>Par</b>: yield = rate</li>
+     <li data-step="1"><b>Premium</b> (above par): yield &lt; rate</li>
+    </ul>
+    <p class="tip" data-step="2"><b>Exam tip</b>Price and yield always move in opposite directions.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- INTEREST RATES -->
+<section class="slide" data-section="2.1" data-title="Interest rates" data-sim="rates">
+ <div class="slide-inner">
+  <h2>Rates up, preferred price <em>down</em></h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <span class="sim-tag">Turn the rate dial</span>
+    <div class="ctl"><label for="rt-r">Market interest rate on similar investments <output id="rt-r-o">5.0%</output></label><input type="range" id="rt-r" min="2" max="10" step="0.5" value="5"></div>
+    <div class="readout">
+     <div><div class="k">Your dividend</div><div class="v">$5.00</div></div>
+     <div><div class="k">Price buyers will pay</div><div class="v" id="rt-px">$100.00</div></div>
+     <div><div class="k">Their yield</div><div class="v" id="rt-y">5.00%</div></div>
+    </div>
+    <div class="bar-h" style="height:18px"><i id="rt-bar" style="width:50%"></i></div>
+    <div class="formula" id="rt-f"></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <ul class="pts">
+     <li>Preferred competes with bonds for the same investors</li>
+     <li data-step="1">New investments pay more → your fixed $5 is worth less → price falls</li>
+     <li data-step="1">Rates fall → your $5 looks better → price rises (a capital gain)</li>
+    </ul>
+    <p class="tip" data-step="2"><b>Exam tip</b>Preferred prices track interest rates much more than company results. (The dial uses a simple model: the price at which $5 earns the market rate.)</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- DIV 2.2 -->
+<section class="slide" data-section="2.2" data-title="Section intro" data-key="div">
+ <div class="slide-inner">
+  <div class="divider"><div class="n">2.2</div><div style="display:flex;flex-direction:column;gap:16px"><h2>Features</h2><div class="chips"><span class="chip">Cumulative</span><span class="chip">Participating</span><span class="chip">Callable</span><span class="chip">Convertible</span></div></div></div>
+ </div>
+</section>
+
+<!-- FEATURES OVERVIEW -->
+<section class="slide" data-section="2.2" data-title="Features are set at issuance">
+ <div class="slide-inner">
+  <h2>Features are built in <em>at issuance</em></h2>
+  <div class="split">
+   <div class="card" data-step="1" style="padding:22px;gap:12px;border-color:var(--accent)"><span class="k">Help the investor</span><div class="chips"><span class="chip">Cumulative</span><span class="chip">Participating</span><span class="chip">Convertible</span></div><b>→ higher price, lower dividend rate, lower yield</b><p>Investors pay up for protection.</p></div>
+   <div class="card" data-step="2" style="padding:22px;gap:12px;border-color:var(--red)"><span class="k">Help the issuer</span><div class="chips"><span class="chip">Callable</span><span class="chip">Straight (non-cumulative)</span></div><b>→ lower price, higher dividend rate, higher yield</b><p>Investors want paying for the extra risk.</p></div>
+  </div>
+  <p class="tip" data-step="3"><b>Exam tip</b>Once issued, a preferred stock's features never change.</p>
+ </div>
+</section>
+
+<!-- CUMULATIVE -->
+<section class="slide" data-section="2.2" data-title="Cumulative vs straight" data-sim="arrears">
+ <div class="slide-inner">
+  <h2>Missed dividends: <em>owed</em> or <em>gone</em>?</h2>
+  <div class="sim">
+   <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+    <span class="sim-tag">$100 par, 5% preferred</span>
+    <div class="seg" role="group" aria-label="Type"><button id="ar-cum" aria-pressed="true">Cumulative</button><button id="ar-str" aria-pressed="false">Straight</button></div>
+   </div>
+   <div class="cols" style="--n:2">
+    <div class="ctl"><label for="ar-skip">Years fully skipped <output id="ar-skip-o">2</output></label><input type="range" id="ar-skip" min="0" max="3" step="1" value="2"></div>
+    <div class="ctl"><label for="ar-part">Then paid only <output id="ar-part-o">3%</output></label><input type="range" id="ar-part" min="0" max="5" step="1" value="3"></div>
+   </div>
+   <div class="years" id="ar-years"></div>
+   <div class="formula" id="ar-f"></div>
+  </div>
+  <p class="tip" data-step="1"><b>Exam tip</b>Cumulative: all arrears + this year before common gets a cent. Straight: just this year.</p>
+ </div>
+</section>
+
+<!-- PARTICIPATING -->
+<section class="slide" data-section="2.2" data-title="Participating">
+ <div class="slide-inner">
+  <h2><em>Participating</em>: a share of the good years</h2>
+  <div class="split">
+   <div class="fn-bars">
+    <div class="fn-bar" data-step="1"><i style="width:30%;background:var(--accent-soft)"></i><span>Normal year · 5%</span></div>
+    <div class="fn-bar" data-step="2"><i style="width:72%;background:var(--accent)"></i><span style="color:var(--on-accent)">Record year · 12%</span></div>
+   </div>
+   <ul class="pts">
+    <li data-step="1">Always gets at least its stated rate</li>
+    <li data-step="2">Can receive <b>more</b> when profits are strong</li>
+    <li data-step="3">Helps the investor → higher price, lower yield</li>
+   </ul>
+  </div>
+ </div>
+</section>
+
+<!-- CALLABLE -->
+<section class="slide" data-section="2.2" data-title="Callable" data-sim="call">
+ <div class="slide-inner">
+  <h2><em>Callable</em>: the issuer can take it back</h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <span class="sim-tag">$100 par, 5% preferred, callable at 102 after 10 years</span>
+    <div class="ctl"><label for="cl-r">Today's rate for new preferred <output id="cl-r-o">5.0%</output></label><input type="range" id="cl-r" min="2" max="8" step="0.5" value="5"></div>
+    <label class="switch"><input type="checkbox" id="cl-prot"> Still inside the 10-year call protection</label>
+    <div class="feedback" id="cl-fb" aria-live="polite"></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <div class="card"><span class="k">Call premium</span><b>"Callable at 102" = $102 for a $100 share</b></div>
+    <div class="card"><span class="k">Call protection</span><b>No call allowed during the first 10 years</b></div>
+    <p class="tip" data-step="1"><b>Exam tip</b>Issuers call when rates <u>fall</u>. You get your money back just when you can only reinvest it at lower rates: reinvestment risk.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- CONVERTIBLE -->
+<section class="slide" data-section="2.2" data-title="Convertible" data-sim="convert">
+ <div class="slide-inner">
+  <h2><em>Convertible</em>: swap into common</h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+     <span class="sim-tag">Conversion ratio</span>
+     <div class="seg" role="group" aria-label="Conversion ratio" id="cv-ratios"><button data-r="2" aria-pressed="true">2:1</button><button data-r="4" aria-pressed="false">4:1</button><button data-r="5" aria-pressed="false">5:1</button></div>
+    </div>
+    <div class="ctl"><label for="cv-com">Common stock price <output id="cv-com-o">$60</output></label><input type="range" id="cv-com" min="10" max="80" step="1" value="60"></div>
+    <div class="ctl"><label for="cv-pref">Preferred market price <output id="cv-pref-o">$110</output></label><input type="range" id="cv-pref" min="60" max="200" step="1" value="110"></div>
+    <div class="readout">
+     <div><div class="k">Conversion value</div><div class="v" id="cv-val">$120</div></div>
+     <div><div class="k">Parity (common)</div><div class="v" id="cv-par">$55</div></div>
+    </div>
+    <div class="feedback" id="cv-fb" aria-live="polite"></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <div class="formula">Conversion value = <b>ratio × common price</b></div>
+    <ul class="pts">
+     <li data-step="1">Preferred should trade at or above its conversion value</li>
+     <li data-step="1">If it's below, traders buy, convert and sell: <b>arbitrage</b></li>
+     <li data-step="2">Lets preferred holders share in the company's growth</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- CONVERSION EXAMPLE -->
+<section class="slide" data-section="2.2" data-title="Conversion example">
+ <div class="slide-inner">
+  <h2>A conversion, <em>step by step</em></h2>
+  <div class="steps3">
+   <div data-step="1"><span class="n">1</span><div><h3>Buy</h3><p>100 convertible preferred at $95 = <b class="num">$9,500</b></p></div></div>
+   <div data-step="2"><span class="n">2</span><div><h3>Common rises</h3><p>From $15 to <b class="num">$30</b>. Ratio is 4:1.</p></div></div>
+   <div data-step="3"><span class="n">3</span><div><h3>Convert</h3><p>100 × 4 = <b class="num">400</b> common shares</p></div></div>
+   <div data-step="4"><span class="n">4</span><div><h3>Sell</h3><p>400 × $30 = <b class="num">$12,000</b></p></div></div>
+  </div>
+  <div class="card" data-step="5" style="border-color:var(--accent)"><span class="k">Gain</span><div class="big pos">+$2,500</div><p>$12,000 − $9,500. Convertible preferred needs shareholder approval to issue because conversion dilutes common holders.</p></div>
+ </div>
+</section>
+
+<!-- FEATURE SORTER -->
+<section class="slide" data-section="2.2" data-title="Sort the features" data-sim="featsort">
+ <div class="slide-inner">
+  <h2>Who does each feature <em>help</em>?</h2>
+  <div class="sim">
+   <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><span class="sim-tag">Tap a card, then a side</span><button class="btn small" id="fs-reset">Start over</button></div>
+   <div class="tray" id="fs-tray"></div>
+   <div class="cols" style="--n:2">
+    <div class="bucket" data-type="inv" role="button" tabindex="0" aria-label="Helps the investor"><h3>Helps the investor</h3><span class="sub">Higher price, lower yield</span><div class="bucket-list"></div></div>
+    <div class="bucket" data-type="iss" role="button" tabindex="0" aria-label="Helps the issuer"><h3>Helps the issuer</h3><span class="sub">Lower price, higher yield</span><div class="bucket-list"></div></div>
+   </div>
+   <div class="feedback" id="fs-fb" aria-live="polite">Pick a card to start.</div>
+  </div>
+ </div>
+</section>
+
+<!-- DIV 2.3 -->
+<section class="slide" data-section="2.3" data-title="Section intro" data-key="div">
+ <div class="slide-inner">
+  <div class="divider"><div class="n">2.3</div><div style="display:flex;flex-direction:column;gap:16px"><h2>Suitability</h2><div class="chips"><span class="chip">Income</span><span class="chip">Risks</span><span class="chip">Liquidation</span><span class="chip">The typical investor</span></div></div></div>
+ </div>
+</section>
+
+<!-- INCOME -->
+<section class="slide" data-section="2.3" data-title="Why buy preferred" data-sim="income">
+ <div class="slide-inner">
+  <h2>The point is <em>income</em></h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <span class="sim-tag">Try it</span>
+    <div class="ctl"><label for="in-sh">Shares <output id="in-sh-o">1,000</output></label><input type="range" id="in-sh" min="100" max="5000" step="100" value="1000"></div>
+    <div class="ctl"><label for="in-rate">Dividend rate <output id="in-rate-o">5%</output></label><input type="range" id="in-rate" min="2" max="9" step="0.5" value="5"></div>
+    <div class="readout">
+     <div><div class="k">Per year</div><div class="v pos" id="in-yr">$5,000</div></div>
+     <div><div class="k">Per quarter</div><div class="v" id="in-q">$1,250</div></div>
+    </div>
+    <div class="formula" id="in-f"></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <ul class="pts">
+     <li>Steady, usually quarterly, dividend income</li>
+     <li data-step="1">Yields more than the same company's bonds, because dividends aren't legally owed</li>
+     <li data-step="2">Extra upside only from features (participating, convertible) or falling rates</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- RISKS -->
+<section class="slide" data-section="2.3" data-title="The risks">
+ <div class="slide-inner">
+  <h2>Six <em>risks</em> to know</h2>
+  <div class="cols" style="--n:3">
+   <div class="card" data-step="1"><span class="k">Skipped dividends</span><b>The board can skip; no legal recourse</b></div>
+   <div class="card" data-step="1"><span class="k">Liquidation</span><b>Behind every creditor</b></div>
+   <div class="card" data-step="2"><span class="k">Interest rate</span><b>Rates up → price down</b></div>
+   <div class="card" data-step="2"><span class="k">Reinvestment</span><b>Rates down → reinvest for less</b></div>
+   <div class="card" data-step="3"><span class="k">Call</span><b>Taken back when rates are low</b></div>
+   <div class="card" data-step="3"><span class="k">Inflation</span><b>A fixed $5 buys less every year</b></div>
+  </div>
+ </div>
+</section>
+
+<!-- LIQUIDATION LADDER -->
+<section class="slide" data-section="2.3" data-title="Priority in liquidation">
+ <div class="slide-inner">
+  <h2>If the company fails: <em>6th</em> of 7</h2>
+  <div class="split">
+   <div class="ladder">
+    <div class="rung"><b>1</b><span>Unpaid wages</span></div>
+    <div class="rung"><b>2</b><span>Unpaid taxes</span></div>
+    <div class="rung"><b>3</b><span>Secured creditors</span></div>
+    <div class="rung"><b>4</b><span>Unsecured creditors</span></div>
+    <div class="rung"><b>5</b><span>Junior unsecured creditors</span></div>
+    <div class="rung on pref" data-step="1"><b>6</b><span>Preferred stockholders</span></div>
+    <div class="rung"><b>7</b><span>Common stockholders</span></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <p class="lede">Ahead of common, behind every creditor.</p>
+    <p class="tip" data-step="2"><b>Exam tip</b>By the time preferred's turn comes there is often little or nothing left.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- RISK SPECTRUM -->
+<section class="slide" data-section="2.3" data-title="Riskier than bonds, safer than common">
+ <div class="slide-inner">
+  <h2>Riskier than bonds, <em>safer</em> than common</h2>
+  <div class="spectrum">
+   <div class="node soft" data-step="1">Government debt<span>lowest risk</span></div>
+   <div class="node soft" data-step="1">Corporate bonds<span>interest legally owed</span></div>
+   <div class="node acc" data-step="2">Preferred stock<span>fixed dividend, can be skipped</span></div>
+   <div class="node" data-step="3">Common stock<span>most risk, most growth</span></div>
+  </div>
+  <div class="bar-h" data-step="3" style="height:12px"><i style="width:100%;background:linear-gradient(90deg,var(--accent-soft),var(--accent),var(--red))"></i></div>
+  <p class="mono" data-step="3" style="font-size:13px;color:var(--ink-2)">more risk and more potential return →</p>
+ </div>
+</section>
+
+<!-- INVESTOR -->
+<section class="slide" data-section="2.3" data-title="Who buys preferred">
+ <div class="slide-inner">
+  <h2>Who buys <em>preferred</em>?</h2>
+  <div class="cols" style="--n:3">
+   <div class="card" data-step="1"><span class="k">Goal</span><b>Income first</b><p>Growth seekers pick common stock.</p></div>
+   <div class="card" data-step="2"><span class="k">Risk</span><b>Risk-averse, often older</b><p>Accepts moderate risk for more income.</p></div>
+   <div class="card" data-step="3"><span class="k">Time horizon</span><b>Long term</b><p>No maturity date; short-term holders may be forced to sell after rates jump.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- MUST REMEMBER -->
+<section class="slide" data-section="end" data-title="Must-remember sheet">
+ <div class="slide-inner">
+  <p class="eyebrow">Chapter 2 · Review</p>
+  <h2>The <em>must-remember</em> sheet</h2>
+  <div class="remember" id="remember">
+   <div class="card"><span class="k">2.1</span><b>Equity that acts like fixed income; usually no vote</b></div>
+   <div class="card"><span class="k">2.1</span><b>Assume $100 par; dividend = rate × par, never market price</b></div>
+   <div class="card"><span class="k">2.1</span><b>Current yield = dividend ÷ price; discount → yield &gt; rate</b></div>
+   <div class="card"><span class="k">2.1</span><b>Rates up → preferred price down</b></div>
+   <div class="card"><span class="k">2.2</span><b>Cumulative: arrears + this year before common (e.g. $17)</b></div>
+   <div class="card"><span class="k">2.2</span><b>Straight: missed dividends are lost</b></div>
+   <div class="card"><span class="k">2.2</span><b>Participating: can get more than the stated rate</b></div>
+   <div class="card"><span class="k">2.2</span><b>Callable at 102 = $2 premium; called when rates fall</b></div>
+   <div class="card"><span class="k">2.2</span><b>Conversion value = ratio × common price</b></div>
+   <div class="card"><span class="k">2.2</span><b>Investor-friendly features → higher price, lower yield</b></div>
+   <div class="card"><span class="k">2.3</span><b>Liquidation: after all creditors, before common (6th of 7)</b></div>
+   <div class="card"><span class="k">2.3</span><b>Risks: skipped dividends, rates, reinvestment, call, inflation</b></div>
+   <div class="card"><span class="k">2.3</span><b>Investor: income-focused, risk-averse, long-term</b></div>
+  </div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn primary" href="quiz.html">Take the quiz →</a><a class="btn" href="textbook.html">Read the textbook</a></div>
+ </div>
+</section>
+
+</main>
+
+<footer class="bottom">
+  <button class="btn" id="prev">← Back</button>
+  <span class="mono" id="count" style="font-size:13px;color:var(--ink-2)">1 / 22</span>
+  <span class="spacer"></span>
+  <span class="hint">← → keys · tap to advance</span>
+  <button class="btn primary" id="next">Next →</button>
+</footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+<script src="../../assets/deck.js"></script>
+<script src="learn.js"></script>
+</body>
+</html>
