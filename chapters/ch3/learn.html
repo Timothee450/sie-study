@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Chapter 3 Learning · SIE Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Cormorant+Garamond:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/theme.css">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/deck.css">
+<style>
+.spectrum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.spectrum .node{display:flex;flex-direction:column;gap:4px;justify-content:center;min-height:84px}
+.spectrum .node span{font:500 12px var(--f-mono);opacity:.8}
+.ylrow{display:grid;grid-template-columns:120px 1fr 64px;gap:10px;align-items:center;font:500 13px var(--f-mono)}
+.ylrow b{text-align:right}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <a class="crumb" href="index.html">← Chapter 3</a>
+  <button class="brand" id="menu-btn" aria-expanded="false" aria-controls="menu">Contents <span class="caret">▾</span></button>
+  <div class="track" id="track"><div class="fill" id="fill"></div></div>
+  <span class="sec-label" id="sec-label">Intro</span>
+  <nav class="menu" id="menu" hidden aria-label="Jump to section"></nav>
+  <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch theme">☾</button>
+</header>
+
+<main class="stage" id="stage">
+
+<!-- TITLE -->
+<section class="slide" data-section="intro" data-title="Welcome" data-key="title">
+ <div class="slide-inner">
+  <div class="split">
+   <div style="display:flex;flex-direction:column;gap:22px">
+    <p class="eyebrow">SIE Exam · Chapter 3</p>
+    <h1>Bonds<br><em>as loans</em></h1>
+    <p class="lede">You lend, the issuer pays interest, and par comes back on a set date. Four sections: the basics, price and yield, issuers and ratings, and the risks.</p>
+    <div class="chips"><span class="chip">3.1 Basics</span><span class="chip">3.2 Price &amp; yield</span><span class="chip">3.3 Issuers</span><span class="chip">3.4 Risks</span></div>
+    <div><button class="btn primary" id="start-btn">Start the walkthrough →</button></div>
+   </div>
+   <div class="cert">
+    <div class="cert-in">
+     <span class="k">Corporate bond certificate</span>
+     <svg class="rosette" viewBox="-80 -80 160 160" aria-hidden="true" id="rosette"></svg>
+     <p>This certifies that</p>
+     <span class="name">YOU</span>
+     <p>are owed <b class="num">$1,000</b> plus 5% interest a year by Apoapsis Launch Co.</p>
+     <div class="cert-row"><span>No. B-000001</span><span>Par value $1,000</span></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- LENDER VS OWNER -->
+<section class="slide" data-section="intro" data-title="Lender, not owner">
+ <div class="slide-inner">
+  <h2>A bondholder is a <em>lender</em></h2>
+  <div class="scroll-x card" style="padding:4px 8px">
+   <table class="tbl">
+    <thead><tr><th></th><th>Bond</th><th>Stock</th></tr></thead>
+    <tbody>
+     <tr data-step="1"><td>You are a…</td><td>Lender (creditor)</td><td>Owner</td></tr>
+     <tr data-step="2"><td>You get…</td><td>Interest, legally owed</td><td>Dividends if the board declares them</td></tr>
+     <tr data-step="3"><td>Vote?</td><td>No</td><td>Common: yes</td></tr>
+     <tr data-step="4"><td>If it fails</td><td>Paid before any stockholder</td><td>Paid after all creditors</td></tr>
+    </tbody>
+   </table>
+  </div>
+  <p class="tip" data-step="4"><b>Exam tip</b>Miss a bond payment and the issuer is in default. Skip a stock dividend and nothing happens legally.</p>
+ </div>
+</section>
+
+<!-- DIV 3.1 -->
+<section class="slide" data-section="3.1" data-title="Section intro" data-key="div">
+ <div class="slide-inner">
+  <div class="divider"><div class="n">3.1</div><div style="display:flex;flex-direction:column;gap:16px"><h2>Bond basics</h2><div class="chips"><span class="chip">$1,000 par</span><span class="chip">Coupon</span><span class="chip">Maturity</span><span class="chip">Current yield</span></div></div></div>
+ </div>
+</section>
+
+<!-- ANATOMY -->
+<section class="slide" data-section="3.1" data-title="The parts of a bond">
+ <div class="slide-inner">
+  <h2>Four things define <em>every</em> bond</h2>
+  <div class="cols" style="--n:2">
+   <div class="card" data-step="1"><span class="k">Par value</span><b>What you get back: assume $1,000 par</b></div>
+   <div class="card" data-step="2"><span class="k">Coupon rate</span><b>Yearly interest as a percent of par, fixed for life</b></div>
+   <div class="card" data-step="3"><span class="k">Maturity date</span><b>The day the issuer repays par</b></div>
+   <div class="card" data-step="4"><span class="k">Indenture</span><b>The contract with all the terms; a trustee enforces it</b></div>
+  </div>
+ </div>
+</section>
+
+<!-- INTEREST FROM PAR -->
+<section class="slide" data-section="3.1" data-title="Interest comes from par" data-sim="coupon">
+ <div class="slide-inner">
+  <h2>Interest comes from <em>par</em>, not price</h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <span class="sim-tag">Try it</span>
+    <div class="ctl"><label for="cp-rate">Coupon rate <output id="cp-rate-o">5%</output></label><input type="range" id="cp-rate" min="1" max="10" step="0.5" value="5"></div>
+    <div class="ctl"><label for="cp-px">Price quote <output id="cp-px-o">100</output></label><input type="range" id="cp-px" min="80" max="120" step="1" value="100"></div>
+    <div class="readout">
+     <div><div class="k">Par</div><div class="v">$1,000</div></div>
+     <div><div class="k">Interest a year</div><div class="v pos" id="cp-yr">$50</div></div>
+     <div><div class="k">Each semiannual payment</div><div class="v" id="cp-half">$25</div></div>
+    </div>
+    <div class="formula" id="cp-f">Interest = <b>5%</b> × $1,000 par = <b>$50</b> a year</div>
+   </div>
+   <ul class="pts">
+    <li>Assume <b>$1,000 par</b> unless told otherwise</li>
+    <li data-step="1">Corporate bonds pay <b>twice a year</b></li>
+    <li data-step="1">A quote of 95 means 95% of par: <b>$950</b> (one point = $10)</li>
+    <li data-step="2">Move the price: the interest doesn't budge</li>
+   </ul>
+  </div>
+ </div>
+</section>
+
+<!-- PRICE VS YIELD -->
+<section class="slide" data-section="3.1" data-title="Current yield" data-sim="seesaw">
+ <div class="slide-inner">
+  <h2>Price up, yield <em>down</em></h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <span class="sim-tag">Try it · 5% bond, $50 a year</span>
+    <svg class="viz" viewBox="0 0 400 190" aria-label="Seesaw: bond price on the left, current yield on the right">
+     <polygon points="200,112 180,168 220,168" class="f-ink2"/>
+     <g id="ss-beam">
+      <rect x="40" y="104" width="320" height="8" rx="4" class="f-ink"/>
+      <rect x="40" y="80" width="88" height="24" rx="6" class="f-accent-soft"/>
+      <rect x="272" y="80" width="88" height="24" rx="6" class="f-amber-soft"/>
+      <text x="84" y="97" text-anchor="middle" font-size="13" font-weight="700" class="f-accent" id="ss-pl">$1,000</text>
+      <text x="316" y="97" text-anchor="middle" font-size="13" font-weight="700" class="f-amber" id="ss-yl">5.00%</text>
+      <text x="84" y="70" text-anchor="middle" font-size="11" class="f-ink2">PRICE</text>
+      <text x="316" y="70" text-anchor="middle" font-size="11" class="f-ink2">YIELD</text>
+     </g>
+    </svg>
+    <div class="ctl"><label for="ss-px">Price quote <output id="ss-px-o">100</output></label><input type="range" id="ss-px" min="80" max="120" step="1" value="100"></div>
+    <div class="formula" id="ss-f"></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <div class="card"><span class="k">Current yield</span><b>Annual interest ÷ market price</b></div>
+    <ul class="pts">
+     <li data-step="1"><b>Discount</b> (below par): yield &gt; coupon</li>
+     <li data-step="1"><b>Par</b>: yield = coupon</li>
+     <li data-step="1"><b>Premium</b> (above par): yield &lt; coupon</li>
+    </ul>
+    <p class="tip" data-step="2"><b>Exam tip</b>Price and yield always move in opposite directions.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- DIV 3.2 -->
+<section class="slide" data-section="3.2" data-title="Section intro" data-key="div">
+ <div class="slide-inner">
+  <div class="divider"><div class="n">3.2</div><div style="display:flex;flex-direction:column;gap:16px"><h2>Price and yield</h2><div class="chips"><span class="chip">Three yields</span><span class="chip">Interest rates</span><span class="chip">Maturity</span><span class="chip">Yield to call</span></div></div></div>
+ </div>
+</section>
+
+<!-- THREE YIELDS -->
+<section class="slide" data-section="3.2" data-title="Coupon, current yield and YTM" data-sim="yields">
+ <div class="slide-inner">
+  <h2>Three yields, <em>one order</em></h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+     <span class="sim-tag">5% bond, 10 years left</span>
+     <div class="seg" role="group" aria-label="Bond trades at" id="yl-btns"><button data-px="90" aria-pressed="false">Discount</button><button data-px="100" aria-pressed="true">Par</button><button data-px="110" aria-pressed="false">Premium</button></div>
+    </div>
+    <div class="ylrow"><span>YTM</span><div class="bar-h" style="height:16px"><i id="yl-ytm-b"></i></div><b id="yl-ytm">5.00%</b></div>
+    <div class="ylrow"><span>Current yield</span><div class="bar-h" style="height:16px"><i id="yl-cy-b"></i></div><b id="yl-cy">5.00%</b></div>
+    <div class="ylrow"><span>Coupon rate</span><div class="bar-h" style="height:16px"><i id="yl-cp-b"></i></div><b id="yl-cp">5.00%</b></div>
+    <div class="formula" id="yl-f"></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <div class="card"><span class="k">YTM</span><b>Return if held to maturity: interest plus the move to par</b></div>
+    <ul class="pts">
+     <li data-step="1"><b>Discount:</b> YTM &gt; current yield &gt; coupon</li>
+     <li data-step="1"><b>Par:</b> all three are equal</li>
+     <li data-step="1"><b>Premium:</b> coupon &gt; current yield &gt; YTM</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- RATES -->
+<section class="slide" data-section="3.2" data-title="Interest rates" data-sim="rates">
+ <div class="slide-inner">
+  <h2>Rates up, bond prices <em>down</em></h2>
+  <div class="split wide-left">
+   <div class="sim">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+     <span class="sim-tag">5% bond · years to maturity</span>
+     <div class="seg" role="group" aria-label="Years to maturity" id="rt-btns"><button data-y="2" aria-pressed="false">2</button><button data-y="10" aria-pressed="true">10</button><button data-y="30" aria-pressed="false">30</button></div>
+    </div>
+    <div class="ctl"><label for="rt-r">Market rate on similar new bonds <output id="rt-r-o">5.0%</output></label><input type="range" id="rt-r" min="2" max="10" step="0.5" value="5"></div>
+    <div class="readout">
+     <div><div class="k">Price buyers will pay</div><div class="v" id="rt-px">$1,000.00</div></div>
+     <div><div class="k">Change vs par</div><div class="v" id="rt-chg">0.00%</div></div>
+    </div>
+    <div class="bar-h" style="height:18px"><i id="rt-bar" style="width:40%"></i></div>
+    <div class="formula" id="rt-f"></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <ul class="pts">
+     <li>Your coupon is fixed; new bonds pay the market rate</li>
+     <li data-step="1">Rates up → your bond looks weak → price falls to a discount</li>
+     <li data-step="1">Rates down → your bond looks strong → price rises to a premium</li>
+     <li data-step="2">Switch to <b>30 years</b>: the price swings much further</li>
+    </ul>
+    <p class="tip" data-step="3"><b>Exam tip</b>Longer maturity and lower coupon mean more price sensitivity to rates.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- CALL -->
+<section class="slide" data-section="3.2" data-title="Yield to call">
+ <div class="slide-inner">
+  <h2>Callable bonds and <em>yield to call</em></h2>
+  <div class="steps3">
+   <div data-step="1"><span class="n">1</span><div><h3>Rates fall</h3><p>The issuer can borrow more cheaply than its <b class="num">6%</b> coupon.</p></div></div>
+   <div data-step="2"><span class="n">2</span><div><h3>Bond trades at a premium</h3><p>A 6% coupon is attractive, so the price rises above par.</p></div></div>
+   <div data-step="3"><span class="n">3</span><div><h3>The issuer calls</h3><p>It repays the call price early and refinances at a lower rate.</p></div></div>
+   <div data-step="4"><span class="n">4</span><div><h3>Yield to call</h3><p>The return if the bond is called at the first call date.</p></div></div>
+  </div>
+  <p class="tip" data-step="5"><b>Exam tip</b>For a premium bond the lowest yield is usually the yield to call. The lowest possible yield is the <u>yield to worst</u>.</p>
+ </div>
+</section>
+
+<!-- DIV 3.3 -->
+<section class="slide" data-section="3.3" data-title="Section intro" data-key="div">
+ <div class="slide-inner">
+  <div class="divider"><div class="n">3.3</div><div style="display:flex;flex-direction:column;gap:16px"><h2>Issuers and ratings</h2><div class="chips"><span class="chip">Corporate</span><span class="chip">Treasury</span><span class="chip">Municipal</span><span class="chip">Ratings</span></div></div></div>
+ </div>
+</section>
+
+<!-- ISSUERS -->
+<section class="slide" data-section="3.3" data-title="Who issues bonds">
+ <div class="slide-inner">
+  <h2>Three big <em>borrowers</em></h2>
+  <div class="cols" style="--n:3">
+   <div class="card" data-step="1"><span class="k">Corporate</span><b>Backed by the company's ability to pay</b><p>Interest is taxed by federal, state and local governments.</p></div>
+   <div class="card" data-step="2"><span class="k">U.S. Treasury</span><b>Full faith and credit of the U.S. government</b><p>Federal tax only. Exempt from state and local income taxes.</p></div>
+   <div class="card" data-step="3"><span class="k">Municipal</span><b>A state or local government</b><p>Interest is generally exempt from federal income tax.</p></div>
+  </div>
+  <p class="tip" data-step="4"><b>Exam tip</b>Agency bonds (Fannie Mae, Freddie Mac, Ginnie Mae) are a fourth group. Each issuer gets its own chapter later.</p>
+ </div>
+</section>
+
+<!-- TREASURY -->
+<section class="slide" data-section="3.3" data-title="Treasury securities">
+ <div class="slide-inner">
+  <h2>Treasuries by <em>maturity</em></h2>
+  <div class="spectrum">
+   <div class="node soft" data-step="1">Bills<span>1 year or less · sold at a discount</span></div>
+   <div class="node soft" data-step="2">Notes<span>2 to 10 years</span></div>
+   <div class="node acc" data-step="3">Bonds<span>more than 10 years</span></div>
+  </div>
+  <p class="lede" data-step="4">Lowest credit risk, so the lowest yields.</p>
+ </div>
+</section>
+
+<!-- RATINGS SORTER -->
+<section class="slide" data-section="3.3" data-title="Sort the ratings" data-sim="ratings">
+ <div class="slide-inner">
+  <h2>Investment grade or <em>high yield</em>?</h2>
+  <div class="sim">
+   <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><span class="sim-tag">Tap a rating, then a side</span><button class="btn small" id="rs-reset">Start over</button></div>
+   <div class="tray" id="rs-tray"></div>
+   <div class="cols" style="--n:2">
+    <div class="bucket" data-type="ig" role="button" tabindex="0" aria-label="Investment grade"><h3>Investment grade</h3><span class="sub">BBB / Baa or higher</span><div class="bucket-list"></div></div>
+    <div class="bucket" data-type="hy" role="button" tabindex="0" aria-label="High yield"><h3>High yield</h3><span class="sub">Below BBB / Baa</span><div class="bucket-list"></div></div>
+   </div>
+   <div class="feedback" id="rs-fb" aria-live="polite">Pick a rating to start.</div>
+  </div>
+ </div>
+</section>
+
+<!-- RATING AND YIELD -->
+<section class="slide" data-section="3.3" data-title="Rating and yield">
+ <div class="slide-inner">
+  <h2>Lower rating, <em>higher yield</em></h2>
+  <div class="split">
+   <div class="fn-bars">
+    <div class="fn-bar" data-step="1"><i style="width:30%;background:var(--accent-soft)"></i><span>AAA · lowest risk · lowest yield</span></div>
+    <div class="fn-bar" data-step="2"><i style="width:48%;background:var(--accent-soft)"></i><span>BBB · lowest investment grade</span></div>
+    <div class="fn-bar" data-step="3"><i style="width:78%;background:var(--accent)"></i><span style="color:var(--on-accent)">BB and below · high yield</span></div>
+   </div>
+   <ul class="pts">
+    <li data-step="1">Moody's, S&amp;P and Fitch grade the issuer</li>
+    <li data-step="2">Bonds below BBB / Baa are high yield ("junk")</li>
+    <li data-step="3">A downgrade usually pushes the bond's price down</li>
+   </ul>
+  </div>
+ </div>
+</section>
+
+<!-- DIV 3.4 -->
+<section class="slide" data-section="3.4" data-title="Section intro" data-key="div">
+ <div class="slide-inner">
+  <div class="divider"><div class="n">3.4</div><div style="display:flex;flex-direction:column;gap:16px"><h2>Risks and suitability</h2><div class="chips"><span class="chip">Five risks</span><span class="chip">Liquidation</span><span class="chip">Suitability</span></div></div></div>
+ </div>
+</section>
+
+<!-- RISKS -->
+<section class="slide" data-section="3.4" data-title="The risks">
+ <div class="slide-inner">
+  <h2>Five <em>risks</em> to know</h2>
+  <div class="cols" style="--n:3">
+   <div class="card" data-step="1"><span class="k">Interest rate</span><b>Rates up → price down</b></div>
+   <div class="card" data-step="1"><span class="k">Credit</span><b>The issuer may not pay</b></div>
+   <div class="card" data-step="2"><span class="k">Inflation</span><b>Fixed dollars buy less every year</b></div>
+   <div class="card" data-step="2"><span class="k">Call</span><b>Taken back when rates are low</b></div>
+   <div class="card" data-step="3"><span class="k">Reinvestment</span><b>Rates down → reinvest for less</b></div>
+  </div>
+ </div>
+</section>
+
+<!-- RISK MATCH -->
+<section class="slide" data-section="3.4" data-title="Name the risk" data-sim="riskmatch">
+ <div class="slide-inner">
+  <h2>Which <em>risk</em> is this?</h2>
+  <div class="sim">
+   <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><span class="sim-tag" id="rk-count">Scenario 1 of 5</span><button class="btn small" id="rk-next">Next scenario →</button></div>
+   <div class="card"><b id="rk-q" style="font-size:19px"></b></div>
+   <div class="seg" role="group" aria-label="Choose the risk" id="rk-btns" style="flex-wrap:wrap"></div>
+   <div class="feedback" id="rk-fb" aria-live="polite">Pick the risk that fits.</div>
+  </div>
+ </div>
+</section>
+
+<!-- LIQUIDATION LADDER -->
+<section class="slide" data-section="3.4" data-title="Priority in liquidation">
+ <div class="slide-inner">
+  <h2>Bondholders are <em>creditors</em></h2>
+  <div class="split">
+   <div class="ladder">
+    <div class="rung"><b>1</b><span>Unpaid wages</span></div>
+    <div class="rung"><b>2</b><span>Unpaid taxes</span></div>
+    <div class="rung on" data-step="1"><b>3</b><span>Secured creditors</span></div>
+    <div class="rung on" data-step="1"><b>4</b><span>Unsecured creditors</span></div>
+    <div class="rung on" data-step="1"><b>5</b><span>Junior unsecured creditors</span></div>
+    <div class="rung"><b>6</b><span>Preferred stockholders</span></div>
+    <div class="rung"><b>7</b><span>Common stockholders</span></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <p class="lede">Bonds are paid before <u>any</u> stockholder.</p>
+    <p class="tip" data-step="2"><b>Exam tip</b>Where a bond ranks among creditors depends on whether it is secured, unsecured or junior.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- INVESTOR -->
+<section class="slide" data-section="3.4" data-title="Who buys bonds">
+ <div class="slide-inner">
+  <h2>Who buys <em>bonds</em>?</h2>
+  <div class="cols" style="--n:3">
+   <div class="card" data-step="1"><span class="k">Goal</span><b>Regular income and safety of principal</b><p>Growth seekers pick stocks.</p></div>
+   <div class="card" data-step="2"><span class="k">Risk</span><b>Cautious to moderate</b><p>Treasuries and high-rated bonds suit the most cautious.</p></div>
+   <div class="card" data-step="3"><span class="k">Time horizon</span><b>Holds to maturity, or accepts price swings</b><p>Selling early after rates rise can mean a loss.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- MUST REMEMBER -->
+<section class="slide" data-section="end" data-title="Must-remember sheet">
+ <div class="slide-inner">
+  <p class="eyebrow">Chapter 3 · Review</p>
+  <h2>The <em>must-remember</em> sheet</h2>
+  <div class="remember" id="remember">
+   <div class="card"><span class="k">3.1</span><b>A bond is a loan; the holder is a creditor with no vote</b></div>
+   <div class="card"><span class="k">3.1</span><b>Assume $1,000 par; interest = coupon × par ($50, paid $25 twice a year)</b></div>
+   <div class="card"><span class="k">3.1</span><b>Current yield = interest ÷ price; discount → yield &gt; coupon</b></div>
+   <div class="card"><span class="k">3.2</span><b>Rates up → bond prices down; quote 102 = $1,020</b></div>
+   <div class="card"><span class="k">3.2</span><b>Long maturity + low coupon = biggest price swings</b></div>
+   <div class="card"><span class="k">3.2</span><b>Discount: YTM &gt; current yield &gt; coupon. Premium: reverse</b></div>
+   <div class="card"><span class="k">3.2</span><b>Premium bond → watch yield to call (yield to worst)</b></div>
+   <div class="card"><span class="k">3.3</span><b>Treasury: federal tax only. Municipal: federal exempt</b></div>
+   <div class="card"><span class="k">3.3</span><b>Investment grade = BBB / Baa or higher; BB / Ba is high yield</b></div>
+   <div class="card"><span class="k">3.4</span><b>Risks: interest rate, credit, inflation, call, reinvestment</b></div>
+   <div class="card"><span class="k">3.4</span><b>Liquidation: creditors before any stockholder</b></div>
+   <div class="card"><span class="k">3.4</span><b>Investor: income and safety, cautious to moderate</b></div>
+  </div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn primary" href="quiz.html">Take the quiz →</a><a class="btn" href="textbook.html">Read the textbook</a></div>
+ </div>
+</section>
+
+</main>
+
+<footer class="bottom">
+  <button class="btn" id="prev">← Back</button>
+  <span class="mono" id="count" style="font-size:13px;color:var(--ink-2)">1 / 21</span>
+  <span class="spacer"></span>
+  <span class="hint">← → keys · tap to advance</span>
+  <button class="btn primary" id="next">Next →</button>
+</footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+<script src="../../assets/deck.js"></script>
+<script src="learn.js"></script>
+<script data-goatcounter="https://timotheepellegrino.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

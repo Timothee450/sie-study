@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Chapter 3 Textbook · SIE Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Cormorant+Garamond:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/theme.css">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/textbook.css">
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="../../index.html">SIE <b>Study</b></a>
+  <a class="crumb" href="index.html">← Chapter 3</a>
+  <span class="spacer"></span>
+  <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch theme">☾</button>
+</div></header>
+
+<div class="wrap tb">
+  <nav class="tb-toc" aria-label="Chapter contents">
+    <details open id="toc-details"><summary>Contents</summary>
+      <ol>
+        <li><a href="#s3-1"><span class="num">3.1</span> Bond basics</a>
+          <ol>
+            <li><a href="#s3-1-basics">What a bond is</a></li>
+            <li><a href="#s3-1-interest">Interest and current yield</a></li>
+          </ol></li>
+        <li><a href="#s3-2"><span class="num">3.2</span> Price and yield</a>
+          <ol>
+            <li><a href="#s3-2-price">Premium, par and discount</a></li>
+            <li><a href="#s3-2-rates">Interest rates</a></li>
+            <li><a href="#s3-2-ytm">Yield to maturity and to call</a></li>
+          </ol></li>
+        <li><a href="#s3-3"><span class="num">3.3</span> Issuers and ratings</a>
+          <ol>
+            <li><a href="#s3-3-issuers">Who issues bonds</a></li>
+            <li><a href="#s3-3-ratings">Credit ratings</a></li>
+          </ol></li>
+        <li><a href="#s3-4"><span class="num">3.4</span> Risks and suitability</a>
+          <ol>
+            <li><a href="#s3-4-risks">Risks</a></li>
+            <li><a href="#s3-4-vs">Bonds and stocks compared</a></li>
+          </ol></li>
+      </ol>
+    </details>
+  </nav>
+
+  <article class="tb-body">
+    <header>
+      <span class="label">Chapter 3 · Textbook</span>
+      <h1>Bonds</h1>
+      <p class="lede">A bond is a loan. This chapter covers how a bond pays interest, why its price moves opposite to interest rates and yields, who issues bonds, how credit ratings work, and the risks a bondholder takes.</p>
+    </header>
+
+    <!-- ================= 3.1 ================= -->
+    <section id="s3-1" aria-labelledby="h3-1">
+      <h2 id="h3-1"><span class="label sec-label" style="display:block;margin-bottom:8px">Section 3.1</span>Bond basics</h2>
+
+      <div class="sub" id="s3-1-basics">
+        <h3>What a bond is</h3>
+        <p>A bond is a <span class="term">debt</span> security. When you buy one, you <strong>lend</strong> money to the <span class="term">issuer</span>, and you become a creditor, not an owner. The issuer promises to pay you interest and to give the borrowed money back on a set date.</p>
+        <ul class="clean">
+          <li><span class="term">Par value (face value):</span> the amount the issuer repays at maturity. On the exam, assume <strong>$1,000 par</strong> unless a question says otherwise.</li>
+          <li><span class="term">Coupon rate:</span> the yearly interest rate, as a percent of par. It is fixed when the bond is issued.</li>
+          <li><span class="term">Maturity date:</span> the day the issuer repays par and the bond ends.</li>
+          <li><span class="term">Indenture:</span> the legal contract that sets out all of the bond's terms. A trustee watches over it for the bondholders.</li>
+        </ul>
+        <p>Because a bond is a loan, the interest is a <strong>legal obligation</strong>. If the issuer misses a payment it is in default, and bondholders can go to court. That is very different from a stock dividend, which the board can simply skip.</p>
+        <p>Bondholders also do not vote and do not share in the company's growth. In exchange, they are paid ahead of every stockholder if the company fails.</p>
+      </div>
+
+      <div class="sub" id="s3-1-interest">
+        <h3>Interest and current yield</h3>
+        <p>Interest is always figured from par, never from the market price:</p>
+        <p class="formula num">Annual interest = coupon rate × par</p>
+        <p>A 5% corporate bond with $1,000 par pays 5% × $1,000 = <span class="num">$50</span> a year. Corporate bonds pay <strong>semiannually</strong>, so that is two payments of <span class="num">$25</span>, six months apart.</p>
+        <p>Bond prices are quoted as a percent of par, and one point is 1% of par, which is $10. A quote of 95 means 95% of $1,000 = $950. The price moves up and down in the market, but the interest stays at $50 a year.</p>
+        <p>What you earn depends on what you paid. That return is the <span class="term">current yield</span>:</p>
+        <p class="formula num">Current yield = annual interest ÷ market price</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Quote</th><th>Market price</th><th>Current yield (5% bond, $50 a year)</th></tr></thead>
+            <tbody>
+              <tr><td class="num">80</td><td class="num">$800</td><td class="num">$50 ÷ $800 = 6.25%</td></tr>
+              <tr><td class="num">95</td><td class="num">$950</td><td class="num">$50 ÷ $950 = 5.26%</td></tr>
+              <tr><td class="num">100</td><td class="num">$1,000</td><td class="num">$50 ÷ $1,000 = 5.00%</td></tr>
+              <tr><td class="num">105</td><td class="num">$1,050</td><td class="num">$50 ÷ $1,050 = 4.76%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel tool">
+          <span class="label tool-tag">Try it · Interest and current yield</span>
+          <div class="fields">
+            <div class="field"><label for="b-rate">Coupon rate (%)</label><input type="number" id="b-rate" min="0" max="20" step="0.25" value="5"></div>
+            <div class="field"><label for="b-px">Price quote (% of par)</label><input type="number" id="b-px" min="1" step="0.5" value="95"></div>
+            <div class="field"><label for="b-n">Bonds owned</label><input type="number" id="b-n" min="1" step="1" value="10"></div>
+          </div>
+          <div class="out">
+            <div class="stat"><span class="label">Interest per bond, per year</span><span class="v" id="b-int">$50.00</span></div>
+            <div class="stat hl"><span class="label">Current yield</span><span class="v" id="b-yld">5.26%</span></div>
+            <div class="stat"><span class="label">Your yearly interest</span><span class="v" id="b-inc">$500.00</span></div>
+          </div>
+          <p class="note" id="b-note"></p>
+        </div>
+        <div class="tip"><span class="label">Exam tip</span><p>Interest = coupon rate × par. If a question gives you a price, it is testing <em>yield</em>, not the interest payment.</p></div>
+      </div>
+
+      <dl class="keyterms">
+        <span class="label">Key terms</span>
+        <dt>Bond</dt><dd>A loan to an issuer that pays interest and returns par at maturity.</dd>
+        <dt>Par value</dt><dd>The amount repaid at maturity; assume $1,000.</dd>
+        <dt>Coupon rate</dt><dd>The fixed yearly interest as a percent of par.</dd>
+        <dt>Maturity</dt><dd>The date the issuer repays par.</dd>
+        <dt>Indenture</dt><dd>The contract that sets out the bond's terms.</dd>
+        <dt>Current yield</dt><dd>Annual interest ÷ market price.</dd>
+      </dl>
+    </section>
+
+    <!-- ================= 3.2 ================= -->
+    <section id="s3-2" aria-labelledby="h3-2">
+      <h2 id="h3-2"><span class="label sec-label" style="display:block;margin-bottom:8px">Section 3.2</span>Price and yield</h2>
+
+      <div class="sub" id="s3-2-price">
+        <h3>Premium, par and discount</h3>
+        <p>A bond can trade for more or less than par. Price and yield move in opposite directions (an <strong>inverse relationship</strong>):</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Market price</th><th>Called</th><th>Current yield vs coupon rate</th></tr></thead>
+            <tbody>
+              <tr><td class="term">Below par</td><td>Discount</td><td>Yield is <strong>higher</strong> than the coupon rate</td></tr>
+              <tr><td class="term">At par</td><td>Par</td><td>Yield <strong>equals</strong> the coupon rate</td></tr>
+              <tr><td class="term">Above par</td><td>Premium</td><td>Yield is <strong>lower</strong> than the coupon rate</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The coupon rate is sometimes called the <span class="term">nominal yield</span>, because it is the "named" rate printed on the bond. It never changes.</p>
+      </div>
+
+      <div class="sub" id="s3-2-rates">
+        <h3>Interest rates drive the price</h3>
+        <p>An existing bond pays a fixed coupon, so its price has to adjust when market interest rates change:</p>
+        <ul class="clean">
+          <li><strong>Rates rise</strong> → new bonds pay more, so old bonds with lower coupons are less attractive → their <strong>prices fall</strong>, to a discount.</li>
+          <li><strong>Rates fall</strong> → old bonds with higher coupons look better → their <strong>prices rise</strong>, to a premium.</li>
+        </ul>
+        <p>Not every bond reacts the same amount. A bond's price is more sensitive to rate changes when it has:</p>
+        <ul class="clean">
+          <li>a <strong>longer maturity</strong> (the fixed rate is locked in for longer), and</li>
+          <li>a <strong>lower coupon</strong> (less of the return arrives early).</li>
+        </ul>
+        <div class="panel tool">
+          <span class="label tool-tag">Try it · What a bond is worth when rates change</span>
+          <div class="fields">
+            <div class="field"><label for="p-cpn">Coupon rate (%)</label><input type="number" id="p-cpn" min="0" max="20" step="0.25" value="5"></div>
+            <div class="field"><label for="p-yrs">Years to maturity</label><input type="number" id="p-yrs" min="1" max="40" step="1" value="10"></div>
+            <div class="field"><label for="p-mkt">Market rate for similar bonds (%)</label><input type="number" id="p-mkt" min="0" max="20" step="0.25" value="6"></div>
+          </div>
+          <div class="out">
+            <div class="stat hl"><span class="label">Price</span><span class="v" id="p-px">$925.61</span></div>
+            <div class="stat"><span class="label">Quote (% of par)</span><span class="v" id="p-q">92.56</span></div>
+            <div class="stat"><span class="label">Change vs par</span><span class="v" id="p-chg">−7.44%</span></div>
+          </div>
+          <p class="note" id="p-note">Try 2 years, then 30 years: the longer bond moves much further.</p>
+        </div>
+        <div class="tip"><span class="label">Exam tip</span><p>Rates up, bond prices down. Rates down, bond prices up. Long maturity and low coupon mean the biggest price swings.</p></div>
+      </div>
+
+      <div class="sub" id="s3-2-ytm">
+        <h3>Yield to maturity and yield to call</h3>
+        <p>Current yield ignores one thing: a bond bought at a discount also gains as it moves up to par by maturity, and a premium bond loses value on the way down. <span class="term">Yield to maturity</span> (YTM) is the total annual return if you hold the bond to maturity. It counts the interest and the gain or loss against par.</p>
+        <p>For a bond at a discount, yield to maturity is higher than current yield, which is higher than the coupon rate. At a premium the order reverses. At par, all three are equal.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Bond trades at</th><th>Ranking of yields (highest → lowest)</th></tr></thead>
+            <tbody>
+              <tr><td class="term">Discount</td><td>YTM &gt; current yield &gt; coupon rate</td></tr>
+              <tr><td class="term">Par</td><td>YTM = current yield = coupon rate</td></tr>
+              <tr><td class="term">Premium</td><td>Coupon rate &gt; current yield &gt; YTM</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><span class="term">Yield to call</span> (YTC) is the same idea, but assumes the issuer calls the bond at the first call date and pays the call price. Issuers tend to call when rates have fallen, which is when bonds trade at a premium, so for a premium bond the yield to call is the lowest yield and the one that matters most. The lowest of the possible yields is sometimes called the <span class="term">yield to worst</span>.</p>
+      </div>
+
+      <dl class="keyterms">
+        <span class="label">Key terms</span>
+        <dt>Discount / premium</dt><dd>Trading below / above par.</dd>
+        <dt>Nominal yield</dt><dd>Another name for the coupon rate.</dd>
+        <dt>Yield to maturity</dt><dd>Total annual return if held to maturity.</dd>
+        <dt>Yield to call</dt><dd>Total annual return if called at the first call date.</dd>
+        <dt>Yield to worst</dt><dd>The lowest yield an investor could receive.</dd>
+      </dl>
+    </section>
+
+    <!-- ================= 3.3 ================= -->
+    <section id="s3-3" aria-labelledby="h3-3">
+      <h2 id="h3-3"><span class="label sec-label" style="display:block;margin-bottom:8px">Section 3.3</span>Issuers and ratings</h2>
+
+      <div class="sub" id="s3-3-issuers">
+        <h3>Who issues bonds</h3>
+        <p>Three big groups borrow in the bond market. Each gets its own chapter later, so this is only a first look.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Issuer</th><th>What backs it</th><th>Tax treatment of the interest</th></tr></thead>
+            <tbody>
+              <tr><td class="term">Corporate</td><td>The company's ability to pay; can be secured by assets or unsecured (debentures)</td><td>Taxed by federal, state and local governments</td></tr>
+              <tr><td class="term">U.S. Treasury</td><td>The full faith and credit of the U.S. government</td><td>Federal income tax only; exempt from state and local income taxes</td></tr>
+              <tr><td class="term">Municipal</td><td>A state or local government's taxing power or a project's revenue</td><td>Generally exempt from federal income tax</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Treasury securities</strong> are grouped by how long they last: bills mature in a year or less and are sold at a discount, notes mature in 2 to 10 years, and bonds mature in more than 10 years. They are seen as having the lowest credit risk, so they pay the lowest yields.</p>
+        <p><strong>Agency bonds</strong> come from government-sponsored organizations such as Fannie Mae, Freddie Mac and Ginnie Mae. <strong>Municipal bonds</strong> pay lower rates than similar taxable bonds, because the tax exemption is worth something to the investor.</p>
+      </div>
+
+      <div class="sub" id="s3-3-ratings">
+        <h3>Credit ratings</h3>
+        <p>Rating agencies grade how likely an issuer is to pay. The three main agencies are <strong>Moody's</strong>, <strong>Standard &amp; Poor's (S&amp;P)</strong> and <strong>Fitch</strong>. A higher rating means lower risk and a lower yield.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Category</th><th>S&amp;P and Fitch</th><th>Moody's</th></tr></thead>
+            <tbody>
+              <tr><td class="term">Investment grade</td><td class="num">AAA, AA, A, BBB</td><td class="num">Aaa, Aa, A, Baa</td></tr>
+              <tr><td class="term">High yield (speculative, "junk")</td><td class="num">BB, B, CCC and lower</td><td class="num">Ba, B, Caa and lower</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The dividing line sits between <strong>BBB and BB</strong> (Baa and Ba at Moody's). Bonds at BB or below must pay a higher yield to attract buyers, because default is more likely.</p>
+        <p>Ratings can change. If an issuer is <em>downgraded</em>, its bond prices usually fall, and if it is <em>upgraded</em>, they usually rise.</p>
+        <div class="tip"><span class="label">Exam tip</span><p>Lowest investment grade: BBB (S&amp;P) or Baa (Moody's). Anything below that is high yield.</p></div>
+      </div>
+
+      <dl class="keyterms">
+        <span class="label">Key terms</span>
+        <dt>Investment grade</dt><dd>Rated BBB / Baa or higher.</dd>
+        <dt>High yield</dt><dd>Rated below BBB / Baa; higher yield, higher default risk.</dd>
+        <dt>Debenture</dt><dd>An unsecured bond backed only by the issuer's credit.</dd>
+        <dt>Treasury bill / note / bond</dt><dd>U.S. government debt maturing in ≤1 year / 2–10 years / over 10 years.</dd>
+      </dl>
+    </section>
+
+    <!-- ================= 3.4 ================= -->
+    <section id="s3-4" aria-labelledby="h3-4">
+      <h2 id="h3-4"><span class="label sec-label" style="display:block;margin-bottom:8px">Section 3.4</span>Risks and suitability</h2>
+
+      <div class="sub" id="s3-4-risks">
+        <h3>Risks</h3>
+        <ul class="clean">
+          <li><span class="term">Interest rate risk:</span> when rates rise, bond prices fall. Someone who has to sell before maturity may take a loss. Long-term, low-coupon bonds are hit hardest.</li>
+          <li><span class="term">Credit (default) risk:</span> the issuer may fail to pay interest or principal. Lower-rated bonds carry more of it.</li>
+          <li><span class="term">Inflation (purchasing power) risk:</span> fixed interest and the returned par buy less as prices rise. High inflation also tends to push rates up and bond prices down.</li>
+          <li><span class="term">Call risk:</span> callable bonds are called when rates are low, so the investor loses the higher coupon.</li>
+          <li><span class="term">Reinvestment risk:</span> when rates fall, coupons and called or matured principal can only be reinvested at lower rates.</li>
+        </ul>
+        <div class="tip"><span class="label">Exam tip</span><p>Treasury bonds have almost no credit risk but still have interest rate and inflation risk. Every fixed-rate bond has interest rate risk.</p></div>
+      </div>
+
+      <div class="sub" id="s3-4-vs">
+        <h3>Bonds and stocks compared</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th></th><th>Bondholder</th><th>Stockholder</th></tr></thead>
+            <tbody>
+              <tr><td class="term">Relationship</td><td>Lender (creditor)</td><td>Owner</td></tr>
+              <tr><td class="term">Payments</td><td>Interest, legally owed</td><td>Dividends, if the board declares them</td></tr>
+              <tr><td class="term">Vote</td><td>No</td><td>Common: yes. Preferred: usually no</td></tr>
+              <tr><td class="term">End date</td><td>Maturity date; par repaid</td><td>None</td></tr>
+              <tr><td class="term">Growth</td><td>No share in company growth</td><td>Common shares in the growth</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>If the company fails, creditors are paid before any stockholder. The order of payment is:</p>
+        <div class="tip">
+          <span class="label">Exam tip · Priority in liquidation</span>
+          <p>Unpaid wages → unpaid taxes → secured creditors → unsecured creditors → junior (subordinated) unsecured creditors → preferred stockholders → common stockholders. Bondholders are among the creditors.</p>
+        </div>
+        <p>Bonds suit investors who want <strong>regular income and safety of principal</strong> more than growth, and who can hold to maturity or understand that prices move with rates. Treasuries and high-rated bonds suit the most cautious investors. Investors seeking growth usually choose stocks.</p>
+      </div>
+
+      <dl class="keyterms">
+        <span class="label">Key terms</span>
+        <dt>Credit risk</dt><dd>The chance the issuer can't pay.</dd>
+        <dt>Interest rate risk</dt><dd>Prices fall when rates rise.</dd>
+        <dt>Call risk</dt><dd>The bond is taken back when rates are low.</dd>
+        <dt>Reinvestment risk</dt><dd>Money must be reinvested at lower rates.</dd>
+        <dt>Purchasing power risk</dt><dd>Inflation erodes fixed payments.</dd>
+      </dl>
+    </section>
+
+    <nav class="tb-next" aria-label="Next steps">
+      <a class="btn" href="learn.html">Try the interactive lesson</a>
+      <a class="btn primary" href="quiz.html">Take the quiz →</a>
+    </nav>
+  </article>
+</div>
+
+<footer class="site-foot"><div class="wrap"><p>SIE Study is independent study material and is not affiliated with or endorsed by FINRA. Examples are fictional.</p></div></footer>
+
+<script src="textbook.js"></script>
+<script data-goatcounter="https://timotheepellegrino.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
