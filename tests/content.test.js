@@ -15,3 +15,9 @@ test("learning teaches interest rate risk as systematic", function () {
 test("learning never calls the $10 spread 'value of 1 right'", function () {
   ok(ln.indexOf("value of 1 right") === -1);
 });
+test("learning layout doesn't depend on body's children (browser extensions inject into <body>)", function () {
+  ok(/<div class="app">\s*<header class="top">/.test(ln), "header/stage/footer must sit inside a .app wrapper");
+  var bodyRule = (ln.match(/\nbody\{[^}]*\}/) || [""])[0];
+  ok(bodyRule.indexOf("display:grid") === -1, "body must not be the layout grid: " + bodyRule);
+  ok(/\.app\{[^}]*position:fixed[^}]*display:grid/.test(ln), ".app must be a fixed, full-window grid");
+});
