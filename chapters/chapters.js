@@ -5,5 +5,8 @@ window.CHAPTERS = [
     href: "chapters/ch1/index.html" },
   { id: "ch2", num: 2, title: "Preferred Stock",
     summary: "The fixed-income side of equity: dividends figured from par, price and yield, cumulative, participating, callable and convertible features, and who preferred stock suits.",
-    href: "chapters/ch2/index.html" }
+    href: "chapters/ch2/index.html" },
+  { id: "ch3", num: 3, title: "Bonds",
+    summary: "Lending to an issuer: par, coupon and maturity, current yield, price versus yield, Treasury, municipal and corporate issuers, credit ratings, and the risks bondholders take.",
+    href: "chapters/ch3/index.html" }
 ];
