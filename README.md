@@ -12,9 +12,11 @@ The site is plain HTML, CSS and JavaScript. There is no build step, and every li
 
 ```
 index.html               home page (chapter cards)
-assets/                  shared theme, theme toggle, progress storage, quiz engine
+assets/                  shared theme, progress storage, quiz engine, slide engine (deck.js/deck.css),
+                         and page styles (hub.css, textbook.css, quiz.css)
 chapters/chapters.js     list of chapters shown on the home page
-chapters/ch1/            Chapter 1: hub (index.html), textbook, learn, quiz, questions.js
+chapters/ch1/            Chapter 1 (Common Stock): hub (index.html), textbook, learn, quiz, questions.js
+chapters/ch2/            Chapter 2 (Preferred Stock): same five parts
 tests/                   unit tests (run with macOS's built-in JavaScriptCore)
 tools/                   site checker and preview helpers
 ```
@@ -47,10 +49,10 @@ python3 tools/check_site.py
 
 ## Add a chapter
 
-1. Copy `chapters/ch1/` to `chapters/ch2/`.
-2. Replace the content of `index.html`, `textbook.html` and `learn.html`/`learn.js`. Then replace the questions in `questions.js` and set `chapter: "ch2"`.
-3. In the new hub (`chapters/ch2/index.html`), change `Progress.showBadge(…, "ch1")` to `"ch2"`.
-4. Add an entry to `chapters/chapters.js`.
-5. Update `tests/chapters.test.js` (it currently expects exactly one chapter), then run both checks.
+1. Copy `chapters/ch2/` to `chapters/chN/` (it's the smaller example).
+2. Replace the content of `index.html`, `textbook.html`/`textbook.js` and `learn.html`/`learn.js`. Then replace the questions in `questions.js` and set `chapter: "chN"`. Shared styles come from `assets/`; only add a small inline `<style>` for something truly chapter-specific.
+3. In `learn.js`, define the chapter's `Sims` (one per `data-sim` slide) and call `SIEDeck.start({ sections, sims, hooks })`.
+4. In the new hub (`chapters/chN/index.html`), change `Progress.showBadge(…, "ch2")` to `"chN"`.
+5. Add an entry to `chapters/chapters.js` and update `tests/chapters.test.js`. Copy `tests/questions-ch2.test.js` for the new quiz, then run both checks.
 
 Quiz scores are saved in the visitor's own browser (`localStorage`), so they stay on that device only.
