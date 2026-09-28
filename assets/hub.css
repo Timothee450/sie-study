@@ -1,0 +1,25 @@
+/* SIE Study shared styles: Chapter hub page. Loaded after theme.css. */
+.hub{display:grid;gap:28px;padding-block:36px 0}
+.hub-head{display:grid;gap:10px}
+.hub-head h1{font-size:clamp(48px,9vw,88px);line-height:.95}
+.hub-head .lede{font-size:18px;color:var(--ink-2);max-width:60ch}
+.learn-list{list-style:none;margin:0;padding:0;display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.learn-list li{display:grid;grid-template-columns:auto 1fr;gap:10px;font-size:15px;color:var(--ink-2)}
+.learn-list .num{color:var(--accent);font-weight:600}
+.learn-list b{color:var(--ink);font-weight:600}
+.pick{display:grid;gap:12px}
+.pick h2{font-size:30px}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mode{display:grid;gap:10px;align-content:start;text-decoration:none;color:inherit;padding:26px;transition:transform .2s,border-color .2s}
+.mode:hover{transform:translateY(-2px);border-color:var(--accent)}
+.mode svg{width:40px;height:40px;color:var(--accent)}
+.mode h3{font-size:40px}
+.mode p{color:var(--ink-2);font-size:15.5px}
+.mode .meta{font:500 13px var(--font-mono);color:var(--ink-2)}
+.mode .cta{font-weight:600;color:var(--accent)}
+.mode.learn h3{font-family:var(--font-bold);font-stretch:125%;font-weight:800;font-size:36px;letter-spacing:-.01em}
+.quiz-tile{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 20px;align-items:center}
+.quiz-tile h3{font-size:30px}
+.quiz-tile p{color:var(--ink-2);font-size:15px}
+.quiz-tile .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+@media (max-width:640px){.modes{grid-template-columns:1fr}.quiz-tile{grid-template-columns:1fr}}
