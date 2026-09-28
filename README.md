@@ -17,6 +17,7 @@ assets/                  shared theme, progress storage, quiz engine, slide engi
 chapters/chapters.js     list of chapters shown on the home page
 chapters/ch1/            Chapter 1 (Common Stock): hub (index.html), textbook, learn, quiz, questions.js
 chapters/ch2/            Chapter 2 (Preferred Stock): same five parts
+chapters/ch3/            Chapter 3 (Bonds): same five parts
 tests/                   unit tests (run with macOS's built-in JavaScriptCore)
 tools/                   site checker and preview helpers
 ```
