@@ -49,7 +49,7 @@ python3 tools/check_site.py
 
 1. Copy `chapters/ch1/` to `chapters/ch2/`.
 2. Replace the content of `index.html`, `textbook.html` and `learn.html`/`learn.js`. Then replace the questions in `questions.js` and set `chapter: "ch2"`.
-3. In the new hub (`chapters/ch2/index.html`), change `Progress.getQuiz("ch1")` to `"ch2"`.
+3. In the new hub (`chapters/ch2/index.html`), change `Progress.showBadge(…, "ch1")` to `"ch2"`.
 4. Add an entry to `chapters/chapters.js`.
 5. Update `tests/chapters.test.js` (it currently expects exactly one chapter), then run both checks.
 
